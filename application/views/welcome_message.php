@@ -19,8 +19,14 @@
 
 				<p>If you are exploring Ion Auth for the very first time, you should start by reading the 
 				<?php echo anchor("http://benedmunds.com/ion_auth/", "Ion Auth User Guide", 'target="blank"');?>.</p>
-
-				<p>If you want to sign in, click here: <?php echo anchor("auth", "Login", '');?>.</p>
+				
+				<?
+				if (!$this->ion_auth->logged_in()):?>
+					<p>If you want to sign in, click here: <?php echo anchor("auth", "Login", '');?>.</p>
+				<? else: ?>
+					<p>If you want to create a new user, click here: <?php echo anchor("auth/create_user", "Create user", '');?>.</p>
+					<p>If you want to sing out, click here: <?php echo anchor("auth/logout", "Logout", '');?>.</p>
+				<? endif;?>
 
 			<p>Page rendered in <strong>{elapsed_time}</strong> seconds. <?php echo  (ENVIRONMENT === 'development') ?  'CodeIgniter Version <strong>' . CI_VERSION . '</strong>' : '' ?></p>
 		</div> <!-- ./ col-lg-12 -->

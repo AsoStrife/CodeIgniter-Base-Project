@@ -477,48 +477,49 @@ class Auth extends CI_Controller {
                 'id'    => 'first_name',
                 'type'  => 'text',
                 'value' => $this->form_validation->set_value('first_name'),
+                'class' => 'form-control'
             );
             $this->data['last_name'] = array(
                 'name'  => 'last_name',
                 'id'    => 'last_name',
                 'type'  => 'text',
                 'value' => $this->form_validation->set_value('last_name'),
-            );
-            $this->data['identity'] = array(
-                'name'  => 'identity',
-                'id'    => 'identity',
-                'type'  => 'text',
-                'value' => $this->form_validation->set_value('identity'),
+                'class' => 'form-control'
             );
             $this->data['email'] = array(
                 'name'  => 'email',
                 'id'    => 'email',
                 'type'  => 'text',
                 'value' => $this->form_validation->set_value('email'),
+                'class' => 'form-control'
             );
             $this->data['company'] = array(
                 'name'  => 'company',
                 'id'    => 'company',
                 'type'  => 'text',
                 'value' => $this->form_validation->set_value('company'),
+                'class' => 'form-control'
             );
             $this->data['phone'] = array(
                 'name'  => 'phone',
                 'id'    => 'phone',
                 'type'  => 'text',
                 'value' => $this->form_validation->set_value('phone'),
+                'class' => 'form-control'
             );
             $this->data['password'] = array(
                 'name'  => 'password',
                 'id'    => 'password',
                 'type'  => 'password',
                 'value' => $this->form_validation->set_value('password'),
+                'class' => 'form-control'
             );
             $this->data['password_confirm'] = array(
                 'name'  => 'password_confirm',
                 'id'    => 'password_confirm',
                 'type'  => 'password',
                 'value' => $this->form_validation->set_value('password_confirm'),
+                'class' => 'form-control'
             );
 
             $this->_render_page('auth/create_user', $this->data);
