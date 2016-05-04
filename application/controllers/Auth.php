@@ -11,7 +11,7 @@ class Auth extends CI_Controller {
 
 		$this->form_validation->set_error_delimiters($this->config->item('error_start_delimiter', 'ion_auth'), $this->config->item('error_end_delimiter', 'ion_auth'));
 
-		$this->lang->load('auth');
+		//$this->lang->load('auth');
 	}
 
 	// redirect if needed, otherwise display the user list
@@ -205,6 +205,7 @@ class Auth extends CI_Controller {
 			// setup the input
 			$this->data['identity'] = array('name' => 'identity',
 				'id' => 'identity',
+				'class' => 'form-control',
 			);
 
 			if ( $this->config->item('identity', 'ion_auth') != 'email' ){
@@ -426,11 +427,13 @@ class Auth extends CI_Controller {
     {
         $this->data['title'] = $this->lang->line('create_user_heading');
 
+        /*
         if (!$this->ion_auth->logged_in() || !$this->ion_auth->is_admin())
         {
             redirect('auth', 'refresh');
         }
-
+		*/
+		
         $tables = $this->config->item('tables','ion_auth');
         $identity_column = $this->config->item('identity','ion_auth');
         $this->data['identity_column'] = $identity_column;

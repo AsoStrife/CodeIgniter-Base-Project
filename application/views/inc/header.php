@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>Bootstrap 101 Template</title>
+    <title>CI Project</title>
 
     <!-- Bootstrap -->
     <?php echo link_tag('css/bootstrap.min.css');?>
@@ -20,3 +20,5 @@
   </head>
 
   <body>
+
+  <? $this->load->view('inc/top-navbar'); ?>

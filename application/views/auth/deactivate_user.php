@@ -44,3 +44,5 @@
 		</div> <!-- ./ col-lg-4 -->
 	</div> <!-- ./ row -->
 </div> <!-- ./ container -->
+
+<?php $this->load->view('inc/footer'); ?>

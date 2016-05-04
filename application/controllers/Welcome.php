@@ -20,6 +20,7 @@ class Welcome extends CI_Controller {
 	 */
 	public function index()
 	{
-		$this->load->view('welcome_message');
+		$this->data['user'] = $user = $this->ion_auth->user()->row();
+		$this->load->view('welcome_message', $this->data);
 	}
 }
