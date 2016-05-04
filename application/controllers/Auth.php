@@ -47,6 +47,9 @@ class Auth extends CI_Controller {
 	// log the user in
 	function login()
 	{
+		if ($this->ion_auth->logged_in())
+			redirect('/', 'refresh');
+		
 		$this->data['title'] = $this->lang->line('login_heading');
 
 		//validate form input
@@ -78,16 +81,19 @@ class Auth extends CI_Controller {
 		{
 			// the user is not logging in so display the login page
 			// set the flash data error message if there is one
-			$this->data['message'] = (validation_errors()) ? validation_errors() : $this->session->flashdata('message');
+			
+			$this->data['message'] = (validation_errors()) ? '' : $this->session->flashdata('message');
 
 			$this->data['identity'] = array('name' => 'identity',
 				'id'    => 'identity',
 				'type'  => 'text',
+				'class' => 'form-control',
 				'value' => $this->form_validation->set_value('identity'),
 			);
 			$this->data['password'] = array('name' => 'password',
-				'id'   => 'password',
-				'type' => 'password',
+				'id'   	=> 'password',
+				'type' 	=> 'password',
+				'class' => 'form-control'
 			);
 
 			$this->_render_page('auth/login', $this->data);
