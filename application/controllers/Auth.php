@@ -217,7 +217,7 @@ class Auth extends CI_Controller {
 			}
 
 			// set any errors and display the form
-			$this->data['message'] = (validation_errors()) ? validation_errors() : $this->session->flashdata('message');
+			$this->data['message'] = (validation_errors()) ? '' : $this->session->flashdata('message');
 			$this->_render_page('auth/forgot_password', $this->data);
 		}
 		else
@@ -287,14 +287,16 @@ class Auth extends CI_Controller {
 					'id'   => 'new',
 					'type' => 'password',
 					'pattern' => '^.{'.$this->data['min_password_length'].'}.*$',
-					'class' => 'form-control'
+					'class' => 'form-control',
+					'autocomplete' => 'off',
 				);
 				$this->data['new_password_confirm'] = array(
 					'name'    => 'new_confirm',
 					'id'      => 'new_confirm',
 					'type'    => 'password',
 					'pattern' => '^.{'.$this->data['min_password_length'].'}.*$',
-					'class' => 'form-control'
+					'class' => 'form-control',
+					'autocomplete' => 'off',
 				);
 				$this->data['user_id'] = array(
 					'name'  => 'user_id',
@@ -433,7 +435,7 @@ class Auth extends CI_Controller {
             redirect('auth', 'refresh');
         }
 		*/
-		
+
         $tables = $this->config->item('tables','ion_auth');
         $identity_column = $this->config->item('identity','ion_auth');
         $this->data['identity_column'] = $identity_column;
@@ -479,56 +481,63 @@ class Auth extends CI_Controller {
         {
             // display the create user form
             // set the flash data error message if there is one
-            $this->data['message'] = (validation_errors() ? validation_errors() : ($this->ion_auth->errors() ? $this->ion_auth->errors() : $this->session->flashdata('message')));
+            $this->data['message'] = (validation_errors() ? '' : ($this->ion_auth->errors() ? $this->ion_auth->errors() : $this->session->flashdata('message')));
 
             $this->data['first_name'] = array(
                 'name'  => 'first_name',
                 'id'    => 'first_name',
                 'type'  => 'text',
                 'value' => $this->form_validation->set_value('first_name'),
-                'class' => 'form-control'
+                'class' => 'form-control',
+                'autocomplete' => 'off',
             );
             $this->data['last_name'] = array(
                 'name'  => 'last_name',
                 'id'    => 'last_name',
                 'type'  => 'text',
                 'value' => $this->form_validation->set_value('last_name'),
-                'class' => 'form-control'
+                'class' => 'form-control',
+                'autocomplete' => 'off',
             );
             $this->data['email'] = array(
                 'name'  => 'email',
                 'id'    => 'email',
                 'type'  => 'text',
                 'value' => $this->form_validation->set_value('email'),
-                'class' => 'form-control'
+                'class' => 'form-control',
+                'autocomplete' => 'off',
             );
             $this->data['company'] = array(
                 'name'  => 'company',
                 'id'    => 'company',
                 'type'  => 'text',
                 'value' => $this->form_validation->set_value('company'),
-                'class' => 'form-control'
+                'class' => 'form-control',
+                'autocomplete' => 'off',
             );
             $this->data['phone'] = array(
                 'name'  => 'phone',
                 'id'    => 'phone',
                 'type'  => 'text',
                 'value' => $this->form_validation->set_value('phone'),
-                'class' => 'form-control'
+                'class' => 'form-control',
+                'autocomplete' => 'off',
             );
             $this->data['password'] = array(
                 'name'  => 'password',
                 'id'    => 'password',
                 'type'  => 'password',
                 'value' => $this->form_validation->set_value('password'),
-                'class' => 'form-control'
+                'class' => 'form-control',
+                'autocomplete' => 'off',
             );
             $this->data['password_confirm'] = array(
                 'name'  => 'password_confirm',
                 'id'    => 'password_confirm',
                 'type'  => 'password',
                 'value' => $this->form_validation->set_value('password_confirm'),
-                'class' => 'form-control'
+                'class' => 'form-control',
+                'autocomplete' => 'off',
             );
 
             $this->_render_page('auth/create_user', $this->data);
@@ -720,14 +729,15 @@ class Auth extends CI_Controller {
 		{
 			// display the create group form
 			// set the flash data error message if there is one
-			$this->data['message'] = (validation_errors() ? validation_errors() : ($this->ion_auth->errors() ? $this->ion_auth->errors() : $this->session->flashdata('message')));
+			$this->data['message'] = (validation_errors() ? '' : ($this->ion_auth->errors() ? $this->ion_auth->errors() : $this->session->flashdata('message')));
 
 			$this->data['group_name'] = array(
 				'name'  => 'group_name',
 				'id'    => 'group_name',
 				'type'  => 'text',
 				'value' => $this->form_validation->set_value('group_name'),
-				'class' => 'form-control'
+				'class' => 'form-control',
+				'autocomplete' => 'off',
 
 			);
 			$this->data['description'] = array(
@@ -735,7 +745,8 @@ class Auth extends CI_Controller {
 				'id'    => 'description',
 				'type'  => 'text',
 				'value' => $this->form_validation->set_value('description'),
-				'class' => 'form-control'
+				'class' => 'form-control',
+				'autocomplete' => 'off',
 			);
 
 			$this->_render_page('auth/create_group', $this->data);
@@ -802,7 +813,8 @@ class Auth extends CI_Controller {
 			'id'    => 'group_description',
 			'type'  => 'text',
 			'value' => $this->form_validation->set_value('group_description', $group->description),
-			'class' => 'form-control'
+			'class' => 'form-control',
+			'autocomplete' => 'off',
 		);
 
 		$this->_render_page('auth/edit_group', $this->data);
