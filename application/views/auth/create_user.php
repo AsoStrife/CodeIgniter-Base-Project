@@ -1,11 +1,9 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
 <?php $this->load->view('inc/header'); ?>
 
-
-
 <div class="container">
 	<div class="row">
-		<div class="col-md-4">
+		<div class="col-lg-4">
 
 			<?php echo form_open("auth/create_user");?>
 

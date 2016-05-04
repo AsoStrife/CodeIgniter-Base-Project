@@ -792,12 +792,14 @@ class Auth extends CI_Controller {
 			'type'    => 'text',
 			'value'   => $this->form_validation->set_value('group_name', $group->name),
 			$readonly => $readonly,
+			'class' => 'form-control'
 		);
 		$this->data['group_description'] = array(
 			'name'  => 'group_description',
 			'id'    => 'group_description',
 			'type'  => 'text',
 			'value' => $this->form_validation->set_value('group_description', $group->description),
+			'class' => 'form-control'
 		);
 
 		$this->_render_page('auth/edit_group', $this->data);

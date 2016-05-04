@@ -3,7 +3,7 @@
 
 <div class="container">
 	<div class="row">
-		<div class="col-md-4">
+		<div class="col-lg-4">
 			
 			<?php echo form_open("auth/login");?>
 			
@@ -33,10 +33,10 @@
 			</div>
 
 			<div class="checkbox">
-			    <label>
-			    	<?php echo form_checkbox('remember', '1', FALSE, 'id="remember"');?> <?php echo lang('login_remember_label');?>
-			    </label>
-			  </div>
+				<label>
+					<?php echo form_checkbox('remember', '1', FALSE, 'id="remember"');?> <?php echo lang('login_remember_label');?>
+				</label>
+			</div>
 
 			<div class="form-group">
 				<?php echo form_submit('submit', lang('login_submit_btn'), array("class" => 'btn btn-default'));?>
