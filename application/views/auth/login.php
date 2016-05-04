@@ -46,7 +46,7 @@
 
 			<p><a href="forgot_password"><?php echo lang('login_forgot_password');?></a></p>
 
-		</div> <!-- ./ col-lg-12 -->
+		</div> <!-- ./ col-lg-4 -->
 	</div> <!-- ./ row -->
 </div> <!-- ./ container -->
 
