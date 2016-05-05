@@ -5,6 +5,7 @@
 	<div class="row">
 		<div class="col-lg-12">
             <p>Bootstrap Image Gallery is an extension to <a href="https://blueimp.github.io/Gallery/">blueimp Gallery</a>, a touch-enabled, responsive and customizable image &amp; video gallery.<br> It displays images and videos in the modal dialog of the <a href="http://getbootstrap.com/">Bootstrap</a> framework, features swipe, mouse and keyboard navigation, transition effects, fullscreen support and on-demand content loading and can be extended to display additional content types.</p>
+            <p> Here the <a href="https://github.com/blueimp/Bootstrap-Image-Gallery" target="_blank"> Doc </a> </p> 
 
             <div id="links">
                 <a href="http://screenrant.com/wp-content/uploads/Captain-America-Civil-War-Splashpage-TeamCap-Photo.jpg" title="Foto 1" data-gallery>

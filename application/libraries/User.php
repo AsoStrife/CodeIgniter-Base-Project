@@ -5,21 +5,21 @@ class User {
 	/*
 	
 	[id] => 1
-	[ip_address] 	=> 2130706433
-	[username] 		=> administrator
-	[password] 		=> 09170458406a81700c6694e38fdac5308f913779
-	[salt] 			=> 9462e8eee0
-	[email] 			=> savino87@gmail.com
-	[activation_code] => 
-	[forgotten_password_code] => 
-	[remember_code] => 
-	[created_on] => 1268889823
-	[last_login] => 1325302690
-	[active] => 1
-	[first_name] => Claudio
-	[last_name] => Savino
-	[company] => ADMIN
-	[phone] => 0
+	[ip_address] 				=> 2130706433
+	[username] 					=> administrator
+	[password] 					=> 09170458406a81700c6694e38fdac5308f913779
+	[salt] 						=> 9462e8eee0
+	[email] 					=> admin@admin.com
+	[activation_code] 			=> 
+	[forgotten_password_code] 	=> 
+	[remember_code]				=> 
+	[created_on] 				=> 1268889823
+	[last_login] 				=> 1325302690
+	[active] 					=> 1
+	[first_name] 				=> Admin
+	[last_name]					=> Istrator
+	[company] 					=> 
+	[phone] 					=> 0
 	
 	*/
 	

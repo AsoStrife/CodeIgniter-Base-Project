@@ -25,16 +25,15 @@ class Plugins extends CI_Controller {
 		$this->load->view('plugins/justifiedGallery/index');
 	}
 
+
 	public function jqueryFileUpload()
 	{
 		$this->load->view('/plugins/jqueryFileUpload/index');
 	}
 
-	/****************************/
-
-	public function do_upload() {
+	public function jqueryFileUploadHandler() {
 
         $this->load->library('UploadHandler');
-
+  
     }
 }
