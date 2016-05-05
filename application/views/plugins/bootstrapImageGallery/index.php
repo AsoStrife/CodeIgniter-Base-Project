@@ -8,16 +8,16 @@
             <p> Here the <a href="https://github.com/blueimp/Bootstrap-Image-Gallery" target="_blank"> Doc </a> </p> 
 
             <div id="links">
-                <a href="http://screenrant.com/wp-content/uploads/Captain-America-Civil-War-Splashpage-TeamCap-Photo.jpg" title="Foto 1" data-gallery>
-                    <img src="http://screenrant.com/wp-content/uploads/Captain-America-Civil-War-Splashpage-TeamCap-Photo.jpg" alt="Foto 1"  width="150">
+                <a href="http://screenrant.com/wp-content/uploads/Captain-America-Civil-War-Splashpage-TeamCap-Photo.jpg" title="Photo 1" data-gallery>
+                    <img src="http://screenrant.com/wp-content/uploads/Captain-America-Civil-War-Splashpage-TeamCap-Photo.jpg" alt="Photo 1"  width="150">
                 </a>
 
-                <a href="http://screenrant.com/wp-content/uploads/Captain-America-Civil-War-Splashpage-TeamCap-Photo.jpg" title="Foto 2" data-gallery>
-                    <img src="http://screenrant.com/wp-content/uploads/Captain-America-Civil-War-Splashpage-TeamCap-Photo.jpg" alt="Foto 2"  width="150">
+                <a href="http://screenrant.com/wp-content/uploads/Captain-America-Civil-War-Splashpage-TeamCap-Photo.jpg" title="Photo 2" data-gallery>
+                    <img src="http://screenrant.com/wp-content/uploads/Captain-America-Civil-War-Splashpage-TeamCap-Photo.jpg" alt="Photo 2"  width="150">
                 </a>
 
-                <a href="http://screenrant.com/wp-content/uploads/Captain-America-Civil-War-Splashpage-TeamCap-Photo.jpg" title="Foto 3" data-gallery>
-                    <img src="http://screenrant.com/wp-content/uploads/Captain-America-Civil-War-Splashpage-TeamCap-Photo.jpg" alt="Foto 3"  width="150">
+                <a href="http://screenrant.com/wp-content/uploads/Captain-America-Civil-War-Splashpage-TeamCap-Photo.jpg" title="Photo 3" data-gallery>
+                    <img src="http://screenrant.com/wp-content/uploads/Captain-America-Civil-War-Splashpage-TeamCap-Photo.jpg" alt="Photo 3"  width="150">
                 </a>
             </div>
 

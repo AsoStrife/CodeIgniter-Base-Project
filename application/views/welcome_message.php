@@ -27,10 +27,10 @@
 			<h2> Frontend Plugins </h2>
 			<p> This project has a common usefull <?php echo anchor("http://getbootstrap.com", "Bootstrap", 'target="blank"');?> plugins presetted to help you to develop your project like: 
 				<ul>
-					<li> <?php echo anchor("https://github.com/blueimp/Bootstrap-Image-Gallery", "Bootstrap Image Gallery", 'target="blank"');?> to create beautyful galleries for your sites </li>
+					<li> <?php echo anchor("https://github.com/blueimp/Bootstrap-Image-Gallery", "Bootstrap Image Gallery", 'target="blank"');?> to create beautiful galleries for your sites </li>
 					<li> <?php echo anchor("http://miromannino.github.io/Justified-Gallery/getting-started/", "Justified Gallery", 'target="blank"');?> to manage thumbnails with Bootstrap Image Gallery</li>
 					<li> <?php echo anchor("https://mjolnic.com/bootstrap-colorpicker/", "Color Picker", 'target="blank"');?>, a simple useful color picker for your project</li>
-					<li> <?php echo anchor("http://eonasdan.github.io/bootstrap-datetimepicker/", "Date Time Picker", 'target="blank"');?>, Who does not need a date time picker?  </li>
+					<li> <?php echo anchor("http://eonasdan.github.io/bootstrap-datetimepicker/", "Date Time Picker", 'target="blank"');?>, who doesn't need a date time picker?  </li>
 					<li> <?php echo anchor("https://blueimp.github.io/jQuery-File-Upload/", "Jquery File Upload", 'target="blank"');?>, the most powerful, complete and flexible jquery upload plugin than I ever seen.  </li>
 				</ul>
 			</p>

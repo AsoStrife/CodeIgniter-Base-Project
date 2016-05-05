@@ -47,6 +47,10 @@
 			<p><a href="forgot_password"><?php echo lang('login_forgot_password');?></a></p>
 
 		</div> <!-- ./ col-lg-4 -->
+
+		<div class="col-lg-4 col-lg-offset-2">
+			<p> Email: admin@admin.com <br> Password: password </p>
+		</div>
 	</div> <!-- ./ row -->
 </div> <!-- ./ container -->
 

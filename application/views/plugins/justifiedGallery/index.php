@@ -8,27 +8,27 @@
             <p> Here the <a href="http://miromannino.github.io/Justified-Gallery/getting-started/" target="_blank"> Doc </a> </p>
 
             <div id="mygallery" >
-                <a href="https://placehold.it/350x150">
+                <a href="#">
                     <img alt="Title 1" src="https://placehold.it/350x150"/>
                 </a>
                 
-                <a href="https://placehold.it/350x150">
+                <a href="#">
                     <img alt="Title 2" src="https://placehold.it/350x150"/>
                 </a>
 
-                <a href="https://placehold.it/350x350">
+                <a href="#">
                     <img alt="Title 2" src="https://placehold.it/350x350"/>
                 </a>
 
-                <a href="https://placehold.it/550x420">
+                <a href="#">
                     <img alt="Title 2" src="https://placehold.it/550x420"/>
                 </a>
 
-                <a href="https://placehold.it/120x600">
+                <a href="#">
                     <img alt="Title 2" src="https://placehold.it/120x600"/>
                 </a>
 
-                <a href="https://placehold.it/1920x1080">
+                <a href="#">
                     <img alt="Title 2" src="https://placehold.it/1920x1080"/>
                 </a>
                 <!-- other images... -->
