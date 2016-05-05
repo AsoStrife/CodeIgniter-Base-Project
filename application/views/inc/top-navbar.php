@@ -17,13 +17,19 @@
 
 					<!-- Collect the nav links, forms, and other content for toggling -->
 					<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-						<?php if ($this->ion_auth->logged_in()): ?>
-							<ul class="nav navbar-nav">
-								<li> <?php echo anchor('auth', 'Amministrazione')?> </li>
-								<li> <?php echo anchor('auth/create_user', lang('index_create_user_link'))?> </li>
-								<li> <?php echo anchor('auth/create_group', lang('index_create_group_link'))?> </li>
-							</ul>
-						<? endif;?>
+						<ul class="nav navbar-nav">
+							<li class="dropdown">
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> Plugins <span class="caret"></span></a>
+								<ul class="dropdown-menu">
+									<li> <?php echo anchor('auth', 'Ion auth')?> </li>
+									<li> <?php echo anchor('plugins/bootstrapImageGallery', "Bootstrap Image Gallery")?> </li>
+									<li> <?php echo anchor('plugins/justifiedGallery', "Justified Gallery")?> </li>
+									<li> <?php echo anchor('plugins/dateTimePicker', "DateTime Picker")?> </li>
+									<li> <?php echo anchor('plugins/colorPicker', "Color Picker")?> </li>
+									<li> <?php echo anchor('plugins/jqueryFileUpload', "Jquery File Upload")?> </li>
+								</ul>
+							</li>
+						</ul>
 						<?php if ($this->ion_auth->logged_in()): ?>
 							<ul class="nav navbar-nav navbar-right">
 								<li class="dropdown">
