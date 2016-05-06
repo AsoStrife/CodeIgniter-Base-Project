@@ -6,7 +6,7 @@
 		<div class="col-lg-12">
 
         <p> File Upload widget with multiple file selection, drag&amp;drop support, progress bar, validation and preview images, audio and video for jQuery. Supports cross-domain, chunked and resumable file uploads. Works with any server-side platform (Google App Engine, PHP, Python, Ruby on Rails, Java, etc.) that supports standard HTML form file uploads.</p>
-        <p><a href="https://blueimp.github.io/jQuery-File-Upload/" rel="nofollow">https://blueimp.github.io/jQuery-File-Upload/</a></p>
+        <p>Here the <a href="https://blueimp.github.io/jQuery-File-Upload/" rel="nofollow"> Doc</a></p>
 
 			<!-- The file upload form used as target for the file upload widget -->
 			    <form id="fileupload" action="/plugins/jqueryFileUploadHandler" method="POST" enctype="multipart/form-data">

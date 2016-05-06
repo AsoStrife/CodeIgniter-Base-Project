@@ -17,7 +17,7 @@
 
 			<p>Page rendered in <strong>{elapsed_time}</strong> seconds. <?php echo  (ENVIRONMENT === 'development') ?  'CodeIgniter Version <strong>' . CI_VERSION . '</strong>' : '' ?></p>
 
-		</div> <!-- ./ col-lg-12 -->
+		</div> <!-- ./ col-lg-6 -->
 	</div> <!-- ./ row -->
 </div> <!-- ./ container -->
 
