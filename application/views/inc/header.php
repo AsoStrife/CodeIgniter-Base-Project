@@ -21,4 +21,4 @@
 
 	<body>
 
-	<? $this->load->view('inc/top-navbar'); ?>
+	<?  $this->load->view('inc/top-navbar');  ?>

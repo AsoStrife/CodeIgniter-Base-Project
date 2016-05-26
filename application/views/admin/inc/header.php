@@ -20,3 +20,9 @@
 	  </head>
 
 	<body>
+		<div id="wrapper">
+
+		<? 
+			if($this->uri->segment(3) != 'login' && $this->uri->segment(3) != 'forgot_password')
+				$this->load->view('admin/inc/navigation');
+		?>

@@ -18,6 +18,7 @@
 					<!-- Collect the nav links, forms, and other content for toggling -->
 					<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 						<ul class="nav navbar-nav">
+							<li> <?php echo anchor('admin', "Admin")?> </li>
 							<li class="dropdown">
 								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> Components <span class="caret"></span></a>
 								<ul class="dropdown-menu">
@@ -48,8 +49,7 @@
 							</ul>
 						<? else: ?>
 							<ul class="nav navbar-nav navbar-right">
-								<li><a href="<?php echo base_url('auth/login')?>"> Login </a></li>
-								<li><a href="<?php echo base_url('auth/create_user')?>"> Registrati </a></li>
+								<li><a href="<?php echo base_url('admin/auth/login')?>"> Login </a></li>
 							</ul>
 						<? endif; ?>
 					</div><!-- ./ navbar-collapse -->

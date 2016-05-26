@@ -1,4 +1,6 @@
-		<?php echo get_js(); ?>
+    </div> <!-- /#wrapper on header.php-->
+
+	<?php echo get_js(); ?>
 
 	</body>
 </html>
