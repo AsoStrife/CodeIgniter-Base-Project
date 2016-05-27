@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Pages extends CI_Controller {
+class Admin extends CI_Controller {
 
 	public function __construct() {
         parent::__construct();
@@ -16,13 +16,10 @@ class Pages extends CI_Controller {
 		// Admin zone is visible only for administrators.
 		if (!$this->ion_auth->logged_in() || !$this->ion_auth->is_admin())
 			return show_404();
-		
-		if(!$this->uri->segment(2))
-			redirect('/admin/pages/index');
     }
 
 	public function index(){
-		$this->load->view('admin/pages/index');
+		$this->load->view('admin/index');
 	}
 
 }

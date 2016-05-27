@@ -10,6 +10,16 @@
  * http://www.opensource.org/licenses/MIT
  */
 
+/**
+ * La classe è stata patchata per poter salvare i file uploaddati nel DB
+ * E' stato preso spunto da questo link https://github.com/blueimp/jQuery-File-Upload/wiki/PHP-MySQL-database-integration
+ * ma è stato tutto integrato qui dentro.
+ * __construct() 					ln [50, 53]
+ * set_additional_file_properties()	ln [291, 302]
+ * handle_file_upload()				ln [1113, 1145]
+ * handle_form_data() 				ln [1191, 1194]
+ * delete()							ln [1431, 1436]
+ */
 class UploadHandler
 {
 
@@ -41,9 +51,14 @@ class UploadHandler
     protected $image_objects = array();
 
     function __construct($options = null, $initialize = true, $error_messages = null) {
+        // Carico la configurazione del database
+        // Edited by Aso
+        $this->CI =& get_instance();
+        $this->CI->load->database('default');
+
         $this->response = array();
         $this->options = array(
-            'script_url' => $this->get_full_url().'/'.$this->basename($this->get_server_var('SCRIPT_NAME')),
+            'script_url' => 'http://localhost/admin/imageUploader/imageUploaderHandler', //$this->get_full_url().'/'.$this->basename($this->get_server_var('SCRIPT_NAME')),
             'upload_dir' => dirname($this->get_server_var('SCRIPT_FILENAME')).'/uploads/',
             'upload_url' => $this->get_full_url().'/uploads/',
             'input_stream' => 'php://input',
@@ -172,6 +187,7 @@ class UploadHandler
     }
 
     protected function initialize() {
+
         switch ($this->get_server_var('REQUEST_METHOD')) {
             case 'OPTIONS':
             case 'HEAD':
@@ -191,6 +207,7 @@ class UploadHandler
             default:
                 $this->header('HTTP/1.1 405 Method Not Allowed');
         }
+
     }
 
     protected function get_full_url() {
@@ -272,6 +289,19 @@ class UploadHandler
         }
         if ($this->options['access_control_allow_credentials']) {
             $file->deleteWithCredentials = true;
+        }
+
+        // Added by aso
+        if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+            $query = $this->db->get_where('imagesuploaded', array('name' => $file->name));
+
+            foreach ($query->result() as $row)
+            {
+                $file->id			= $row->id;
+                $file->type			= $row->type;
+                $file->title		= $row->title;
+                $file->description	= $row->description;
+            }
         }
     }
 
@@ -1102,6 +1132,21 @@ class UploadHandler
             }
             $this->set_additional_file_properties($file);
         }
+
+        // Salvo i file caricati nel database
+        // Edited by Aso
+        if (empty($file->error)) {
+            $data = array(
+                    'name'          => $file->name,
+                    'size'          => $file->size,
+                    'type'          => $file->type,
+                    'title'         => $file->title,
+                    'description'   => $file->description,
+                    'url'           => base_url() .'uploads/'.$file->name,
+            );
+            $this->CI->db->insert('imagesuploaded', $data);
+            $file->id = $this->CI->db->insert_id();
+        }
         return $file;
     }
 
@@ -1147,6 +1192,9 @@ class UploadHandler
 
     protected function handle_form_data($file, $index) {
         // Handle form data, e.g. $_POST['description'][$index]
+        // Added by Aso, pesco la descrizione del file ed il titolo ad essa associato
+        $file->title        = @$_REQUEST['title'][$index];
+        $file->description  = @$_REQUEST['description'][$index];
     }
 
     protected function get_version_param() {
@@ -1382,6 +1430,13 @@ class UploadHandler
             }
             $response[$file_name] = $success;
         }
+
+        // Added by aso, cancello la foto dal database
+        foreach ($response as $name => $deleted) {
+            if ($deleted) {
+                $this->CI->db->delete('imagesuploaded', array('name' => $name));
+            }           
+        } 
         return $this->generate_response($response, $print_response);
     }
 

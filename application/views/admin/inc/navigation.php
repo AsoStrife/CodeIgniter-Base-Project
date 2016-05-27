@@ -43,10 +43,34 @@
                             </div>
                             <!-- /input-group -->
                         </li>
-                        <li> <a href="/admin/pages/index"><i class="fa fa-dashboard fa-fw"></i> Bacheca</a> </li>
-                        <li> <a href="/admin/pages/imageUploader"><i class="fa fa-image fa-fw"></i> Gestore Immagini</a> </li>
+                        <li> <a href="/admin/pages/index"><i class="fa fa-dashboard fa-fw"></i> Bacheca </a> </li>
+
+                        <li> <a href="_"><i class="fa fa-rss fa-fw"></i> Notizie <span class="fa arrow"></span>  </a> 
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="/admin/news/add"> Aggiungi </a>
+                                </li>
+                                <li>
+                                    <a href="/admin/news/index"> Visualizza</a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li> <a href="_"><i class="fa fa-file-o fa-fw"></i> Pagine <span class="fa arrow"></span>  </a> 
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="/admin/pages/add"> Aggiungi </a>
+                                </li>
+                                <li>
+                                    <a href="/admin/pages/index"> Visualizza</a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li> <a href="/admin/imageUploader/index"><i class="fa fa-image fa-fw"></i> Gestore Immagini</a> </li>
+
                         <li>
-                            <a href="#"><i class="fa fa-user fa-fw"></i> Gestione Utente<span class="fa arrow"></span></a>
+                            <a href="_"><i class="fa fa-user fa-fw"></i> Gestione Utente <span class="fa arrow"></span> </a>
                             <ul class="nav nav-second-level">
                                 <li>
                                     <a href="/admin/auth/create_user"> Aggiungi </a>

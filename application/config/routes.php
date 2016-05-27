@@ -54,6 +54,6 @@ $route['default_controller'] = 'welcome';
 $route['404_override'] = '';
 
 // admin folder uri rewrite
-$route['admin'] = 'admin/pages';
+$route['admin'] = 'admin/admin/index';
 
 $route['translate_uri_dashes'] = FALSE;
