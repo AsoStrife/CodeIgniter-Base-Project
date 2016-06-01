@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Creato il: Mag 27, 2016 alle 12:48
+-- Creato il: Giu 01, 2016 alle 16:56
 -- Versione del server: 10.1.10-MariaDB
 -- Versione PHP: 5.6.19
 
@@ -72,6 +72,80 @@ CREATE TABLE `login_attempts` (
 -- --------------------------------------------------------
 
 --
+-- Struttura della tabella `news`
+--
+
+CREATE TABLE `news` (
+  `news_id` int(11) NOT NULL,
+  `news_created_on` datetime NOT NULL,
+  `news_modified_on` datetime DEFAULT NULL,
+  `news_title` varchar(128) NOT NULL,
+  `news_url_title` varchar(256) NOT NULL,
+  `news_content` text NOT NULL,
+  `news_status` enum('published','draft') NOT NULL,
+  `news_comments_status` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Struttura della tabella `news_categories`
+--
+
+CREATE TABLE `news_categories` (
+  `news_categories_id` int(11) NOT NULL,
+  `news_categories_news_id` int(11) NOT NULL,
+  `news_categories_category_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Struttura della tabella `n_categories`
+--
+
+CREATE TABLE `n_categories` (
+  `n_category_id` int(11) NOT NULL,
+  `n_category_name` varchar(128) NOT NULL,
+  `n_category_url_name` varchar(256) NOT NULL,
+  `n_category_created_on` datetime NOT NULL,
+  `n_category_modified_on` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Struttura della tabella `pages`
+--
+
+CREATE TABLE `pages` (
+  `page_id` int(11) NOT NULL,
+  `page_created_on` datetime NOT NULL,
+  `page_modified_on` datetime DEFAULT NULL,
+  `page_title` varchar(128) NOT NULL,
+  `page_title_url` varchar(256) NOT NULL,
+  `page_content` text NOT NULL,
+  `page_status` enum('published','draft','','') NOT NULL,
+  `p_category_id` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Struttura della tabella `p_categories`
+--
+
+CREATE TABLE `p_categories` (
+  `p_category_id` int(11) NOT NULL,
+  `p_category_name` varchar(128) NOT NULL,
+  `p_category_url_name` varchar(256) NOT NULL,
+  `p_category_created_on` datetime NOT NULL,
+  `p_category_modified_on` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
 -- Struttura della tabella `users`
 --
 
@@ -101,7 +175,7 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `ip_address`, `username`, `password`, `salt`, `email`, `activation_code`, `forgotten_password_code`, `forgotten_password_time`, `remember_code`, `created_on`, `last_login`, `active`, `first_name`, `last_name`, `company`, `phone`) VALUES
 (1, '127.0.0.1', 'administrator', '$2a$07$SeBknntpZror9uyftVopmu61qg0ms8Qv1yV6FG.kQOSM.9QhmTo36', '', 'admin@admin.com', 'adf59b8b49892356075e4c168dc4fbe6f449778a', NULL, NULL, '6b8kaYJa.kYsnKmaE28nau', 1268889823, 1464271068, 0, 'Admin', 'Inistrator', ' -', ' -'),
-(2, '::1', NULL, '$2y$08$QPEB8fEZGZkVTi057DxLdufdrlYkMOGScO/D5e6OCYYdQwF8uh90K', NULL, 'me@andreacorriga.com', NULL, NULL, NULL, '4I7BuptJJNGtjHs3xgVCM.', 1464270944, 1464335569, 1, 'Andrea', 'Corriga', 'Webenterprises', '345 62 29 455');
+(2, '::1', NULL, '$2y$08$QPEB8fEZGZkVTi057DxLdufdrlYkMOGScO/D5e6OCYYdQwF8uh90K', NULL, 'me@andreacorriga.com', NULL, NULL, NULL, 'pjXUXdoKDxDljfAGTyxExe', 1464270944, 1464786336, 1, 'Andrea', 'Corriga', 'Webenterprises', '345 62 29 455');
 
 -- --------------------------------------------------------
 
@@ -148,6 +222,36 @@ ALTER TABLE `login_attempts`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indici per le tabelle `news`
+--
+ALTER TABLE `news`
+  ADD PRIMARY KEY (`news_id`);
+
+--
+-- Indici per le tabelle `news_categories`
+--
+ALTER TABLE `news_categories`
+  ADD PRIMARY KEY (`news_categories_id`);
+
+--
+-- Indici per le tabelle `n_categories`
+--
+ALTER TABLE `n_categories`
+  ADD PRIMARY KEY (`n_category_id`);
+
+--
+-- Indici per le tabelle `pages`
+--
+ALTER TABLE `pages`
+  ADD PRIMARY KEY (`page_id`);
+
+--
+-- Indici per le tabelle `p_categories`
+--
+ALTER TABLE `p_categories`
+  ADD PRIMARY KEY (`p_category_id`);
+
+--
 -- Indici per le tabelle `users`
 --
 ALTER TABLE `users`
@@ -181,6 +285,31 @@ ALTER TABLE `imagesuploaded`
 --
 ALTER TABLE `login_attempts`
   MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT per la tabella `news`
+--
+ALTER TABLE `news`
+  MODIFY `news_id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT per la tabella `news_categories`
+--
+ALTER TABLE `news_categories`
+  MODIFY `news_categories_id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT per la tabella `n_categories`
+--
+ALTER TABLE `n_categories`
+  MODIFY `n_category_id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT per la tabella `pages`
+--
+ALTER TABLE `pages`
+  MODIFY `page_id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT per la tabella `p_categories`
+--
+ALTER TABLE `p_categories`
+  MODIFY `p_category_id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT per la tabella `users`
 --

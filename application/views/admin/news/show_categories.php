@@ -5,14 +5,14 @@
         
     <div class="row">
 		<div class="col-lg-12">
-			<h1 class="page-header">Pagine</h1>
+			<h1 class="page-header"> Categorie </h1>
 		</div>
 	</div>
 
 	<div class="row">
 		<div class="col-lg-12">
 			<div class="panel panel-default">
-				<div class="panel-heading"> Qui sotto troverete la lista delle pagine inserite </div>
+				<div class="panel-heading"> Qui sotto troverete la lista delle categorie inserite </div>
 
 				<div class="panel-body">
 					<?php if(isset($message) && trim($message) != ''): ?>
@@ -22,32 +22,29 @@
 						</div>
 					<? endif;?>
 
-					<? if($pages): ?>
+					<? if($categories): ?>
 					<table class="table table-striped">
 						<tr>
 							<th> ID </th>
 							<th> Titolo </th>
+							<th> Titolo url</th>
 							<th> Creato in data </th>
 							<th> Ultima modifica </th>
-							<th> Stato </th>
-							<th> Commenti attivi </th>
 						</tr>
 
-						<?php foreach ($pages as $page):?>
+						<?php foreach ($categories as $category):?>
 							<tr>
-					            <td><?php echo $page->id;?></td>
-					            <td><?php echo $page->news_title;?></td>
-					            <td><?php echo $page->news_created_on;?></td>
-					            <td><?php echo $page->news_modified_on;?></td>
-					            <td><?php echo $page->news_status;?></td>
-					            <td><?php echo $page->news_comments_status;?></td>
-
+					            <td><?php echo $category->p_category_id;?></td>
+					            <td><?php echo $category->p_category_name;?></td>
+					            <td><?php echo $category->p_category_url_name;?></td>
+					            <td><?php echo $category->p_category_created_on;?></td>
+					            <td><?php echo $category->p_category_modified_on;?></td>
 							</tr>
 						<?php endforeach;?>
 					</table>
 					<? else: ?>
 						<div class="alert alert-warning" role="alert"> 
-							Non sono ancora state inseriti pagine, <?php echo anchor('admin/pages/add', "aggiungi una pagina ora", array('class'=> 'alert-link'))?> !
+							Non sono ancora state inseriti categorie, <?php echo anchor('admin/pages/add_category', "aggiungi una categoria ora", array('class'=> 'alert-link'))?> !
 						</div>
 					<? endif;?>
 				</div> <!-- ./ panel-body -->

@@ -32,37 +32,64 @@
             <div class="navbar-default sidebar" role="navigation">
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
-                        <li class="sidebar-search">
-                            <div class="input-group custom-search-form">
-                                <input type="text" class="form-control" placeholder="Cerca...">
-                                <span class="input-group-btn">
-                                <button class="btn btn-default" type="button">
-                                    <i class="fa fa-search"></i>
-                                </button>
-                            </span>
-                            </div>
-                            <!-- /input-group -->
-                        </li>
-                        <li> <a href="/admin/pages/index"><i class="fa fa-dashboard fa-fw"></i> Bacheca </a> </li>
+                        <li> <a href="/admin/index"><i class="fa fa-dashboard fa-fw"></i> Bacheca </a> </li>
 
                         <li> <a href="_"><i class="fa fa-rss fa-fw"></i> Notizie <span class="fa arrow"></span>  </a> 
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="/admin/news/add"> Aggiungi </a>
+                                    <a href="#">Articoli <span class="fa arrow"></span></a>
+                                    <ul class="nav nav-third-level">
+                                        <li>
+                                            <a href="/admin/news/add">Aggiungi un'articolo</a>
+                                        </li>
+                                        <li>
+                                            <a href="/admin/news/index">Visualizza articoli</a>
+                                        </li>
+                                    </ul>
+                                    <!-- /.nav-third-level -->
                                 </li>
+                                
                                 <li>
-                                    <a href="/admin/news/index"> Visualizza</a>
-                                </li>
+                                    <a href="#">Categorie <span class="fa arrow"></span></a>
+                                    <ul class="nav nav-third-level">
+                                        <li>
+                                            <a href="/admin/news/add_category">Aggiungi una categoria</a>
+                                        </li>
+                                        <li>
+                                            <a href="/admin/news/show_categories">Visualizza categorie</a>
+                                        </li>
+                                    </ul>
+                                    <!-- /.nav-third-level -->
+                                </li>                              
                             </ul>
                         </li>
 
                         <li> <a href="_"><i class="fa fa-file-o fa-fw"></i> Pagine <span class="fa arrow"></span>  </a> 
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="/admin/pages/add"> Aggiungi </a>
+                                    <a href="#">Gestisci pagine <span class="fa arrow"></span></a>
+                                    <ul class="nav nav-third-level">
+                                        <li>
+                                            <a href="/admin/pages/add">Aggiungi una pagina</a>
+                                        </li>
+                                        <li>
+                                            <a href="/admin/pages/index">Visualizza pagine</a>
+                                        </li>
+                                    </ul>
+                                    <!-- /.nav-third-level -->
                                 </li>
+                                
                                 <li>
-                                    <a href="/admin/pages/index"> Visualizza</a>
+                                    <a href="#">Categorie <span class="fa arrow"></span></a>
+                                    <ul class="nav nav-third-level">
+                                        <li>
+                                            <a href="/admin/pages/add_category">Aggiungi una categoria</a>
+                                        </li>
+                                        <li>
+                                            <a href="/admin/pages/show_categories">Visualizza categorie</a>
+                                        </li>
+                                    </ul>
+                                    <!-- /.nav-third-level -->
                                 </li>
                             </ul>
                         </li>
