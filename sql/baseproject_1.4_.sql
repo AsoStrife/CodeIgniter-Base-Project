@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Creato il: Giu 01, 2016 alle 16:56
--- Versione del server: 10.1.10-MariaDB
--- Versione PHP: 5.6.19
+-- Generation Time: Jun 03, 2016 at 09:22 AM
+-- Server version: 10.1.10-MariaDB
+-- PHP Version: 5.6.19
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -23,7 +23,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `groups`
+-- Table structure for table `groups`
 --
 
 CREATE TABLE `groups` (
@@ -33,7 +33,7 @@ CREATE TABLE `groups` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dump dei dati per la tabella `groups`
+-- Dumping data for table `groups`
 --
 
 INSERT INTO `groups` (`id`, `name`, `description`) VALUES
@@ -43,23 +43,7 @@ INSERT INTO `groups` (`id`, `name`, `description`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `imagesuploaded`
---
-
-CREATE TABLE `imagesuploaded` (
-  `id` int(11) UNSIGNED NOT NULL,
-  `name` varchar(255) DEFAULT NULL,
-  `size` int(11) DEFAULT NULL,
-  `type` varchar(255) DEFAULT NULL,
-  `url` varchar(255) DEFAULT NULL,
-  `title` varchar(255) DEFAULT NULL,
-  `description` text
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Struttura della tabella `login_attempts`
+-- Table structure for table `login_attempts`
 --
 
 CREATE TABLE `login_attempts` (
@@ -72,7 +56,7 @@ CREATE TABLE `login_attempts` (
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `news`
+-- Table structure for table `news`
 --
 
 CREATE TABLE `news` (
@@ -89,7 +73,7 @@ CREATE TABLE `news` (
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `news_categories`
+-- Table structure for table `news_categories`
 --
 
 CREATE TABLE `news_categories` (
@@ -101,7 +85,7 @@ CREATE TABLE `news_categories` (
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `n_categories`
+-- Table structure for table `n_categories`
 --
 
 CREATE TABLE `n_categories` (
@@ -115,7 +99,7 @@ CREATE TABLE `n_categories` (
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `pages`
+-- Table structure for table `pages`
 --
 
 CREATE TABLE `pages` (
@@ -132,7 +116,7 @@ CREATE TABLE `pages` (
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `p_categories`
+-- Table structure for table `p_categories`
 --
 
 CREATE TABLE `p_categories` (
@@ -146,7 +130,23 @@ CREATE TABLE `p_categories` (
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `users`
+-- Table structure for table `uploaded_images`
+--
+
+CREATE TABLE `uploaded_images` (
+  `image_id` int(11) UNSIGNED NOT NULL,
+  `image_name` varchar(255) DEFAULT NULL,
+  `image_size` int(11) DEFAULT NULL,
+  `image_type` varchar(255) DEFAULT NULL,
+  `image_url` varchar(255) DEFAULT NULL,
+  `image_title` varchar(255) DEFAULT NULL,
+  `image_description` text
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users`
 --
 
 CREATE TABLE `users` (
@@ -170,17 +170,17 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dump dei dati per la tabella `users`
+-- Dumping data for table `users`
 --
 
 INSERT INTO `users` (`id`, `ip_address`, `username`, `password`, `salt`, `email`, `activation_code`, `forgotten_password_code`, `forgotten_password_time`, `remember_code`, `created_on`, `last_login`, `active`, `first_name`, `last_name`, `company`, `phone`) VALUES
 (1, '127.0.0.1', 'administrator', '$2a$07$SeBknntpZror9uyftVopmu61qg0ms8Qv1yV6FG.kQOSM.9QhmTo36', '', 'admin@admin.com', 'adf59b8b49892356075e4c168dc4fbe6f449778a', NULL, NULL, '6b8kaYJa.kYsnKmaE28nau', 1268889823, 1464271068, 0, 'Admin', 'Inistrator', ' -', ' -'),
-(2, '::1', NULL, '$2y$08$QPEB8fEZGZkVTi057DxLdufdrlYkMOGScO/D5e6OCYYdQwF8uh90K', NULL, 'me@andreacorriga.com', NULL, NULL, NULL, 'pjXUXdoKDxDljfAGTyxExe', 1464270944, 1464786336, 1, 'Andrea', 'Corriga', 'Webenterprises', '345 62 29 455');
+(2, '::1', NULL, '$2y$08$QPEB8fEZGZkVTi057DxLdufdrlYkMOGScO/D5e6OCYYdQwF8uh90K', NULL, 'me@andreacorriga.com', NULL, NULL, NULL, 'pjXUXdoKDxDljfAGTyxExe', 1464270944, 1464937204, 1, 'Andrea', 'Corriga', 'Webenterprises', '345 62 29 455');
 
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `users_groups`
+-- Table structure for table `users_groups`
 --
 
 CREATE TABLE `users_groups` (
@@ -190,7 +190,7 @@ CREATE TABLE `users_groups` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dump dei dati per la tabella `users_groups`
+-- Dumping data for table `users_groups`
 --
 
 INSERT INTO `users_groups` (`id`, `user_id`, `group_id`) VALUES
@@ -200,65 +200,65 @@ INSERT INTO `users_groups` (`id`, `user_id`, `group_id`) VALUES
 (9, 2, 2);
 
 --
--- Indici per le tabelle scaricate
+-- Indexes for dumped tables
 --
 
 --
--- Indici per le tabelle `groups`
+-- Indexes for table `groups`
 --
 ALTER TABLE `groups`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indici per le tabelle `imagesuploaded`
---
-ALTER TABLE `imagesuploaded`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indici per le tabelle `login_attempts`
+-- Indexes for table `login_attempts`
 --
 ALTER TABLE `login_attempts`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indici per le tabelle `news`
+-- Indexes for table `news`
 --
 ALTER TABLE `news`
   ADD PRIMARY KEY (`news_id`);
 
 --
--- Indici per le tabelle `news_categories`
+-- Indexes for table `news_categories`
 --
 ALTER TABLE `news_categories`
   ADD PRIMARY KEY (`news_categories_id`);
 
 --
--- Indici per le tabelle `n_categories`
+-- Indexes for table `n_categories`
 --
 ALTER TABLE `n_categories`
   ADD PRIMARY KEY (`n_category_id`);
 
 --
--- Indici per le tabelle `pages`
+-- Indexes for table `pages`
 --
 ALTER TABLE `pages`
   ADD PRIMARY KEY (`page_id`);
 
 --
--- Indici per le tabelle `p_categories`
+-- Indexes for table `p_categories`
 --
 ALTER TABLE `p_categories`
   ADD PRIMARY KEY (`p_category_id`);
 
 --
--- Indici per le tabelle `users`
+-- Indexes for table `uploaded_images`
+--
+ALTER TABLE `uploaded_images`
+  ADD PRIMARY KEY (`image_id`);
+
+--
+-- Indexes for table `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indici per le tabelle `users_groups`
+-- Indexes for table `users_groups`
 --
 ALTER TABLE `users_groups`
   ADD PRIMARY KEY (`id`),
@@ -267,65 +267,65 @@ ALTER TABLE `users_groups`
   ADD KEY `fk_users_groups_groups1_idx` (`group_id`);
 
 --
--- AUTO_INCREMENT per le tabelle scaricate
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT per la tabella `groups`
+-- AUTO_INCREMENT for table `groups`
 --
 ALTER TABLE `groups`
   MODIFY `id` mediumint(8) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
--- AUTO_INCREMENT per la tabella `imagesuploaded`
---
-ALTER TABLE `imagesuploaded`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT per la tabella `login_attempts`
+-- AUTO_INCREMENT for table `login_attempts`
 --
 ALTER TABLE `login_attempts`
   MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT per la tabella `news`
+-- AUTO_INCREMENT for table `news`
 --
 ALTER TABLE `news`
   MODIFY `news_id` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT per la tabella `news_categories`
+-- AUTO_INCREMENT for table `news_categories`
 --
 ALTER TABLE `news_categories`
   MODIFY `news_categories_id` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT per la tabella `n_categories`
+-- AUTO_INCREMENT for table `n_categories`
 --
 ALTER TABLE `n_categories`
   MODIFY `n_category_id` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT per la tabella `pages`
+-- AUTO_INCREMENT for table `pages`
 --
 ALTER TABLE `pages`
   MODIFY `page_id` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT per la tabella `p_categories`
+-- AUTO_INCREMENT for table `p_categories`
 --
 ALTER TABLE `p_categories`
   MODIFY `p_category_id` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT per la tabella `users`
+-- AUTO_INCREMENT for table `uploaded_images`
+--
+ALTER TABLE `uploaded_images`
+  MODIFY `image_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
   MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
--- AUTO_INCREMENT per la tabella `users_groups`
+-- AUTO_INCREMENT for table `users_groups`
 --
 ALTER TABLE `users_groups`
   MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 --
--- Limiti per le tabelle scaricate
+-- Constraints for dumped tables
 --
 
 --
--- Limiti per la tabella `users_groups`
+-- Constraints for table `users_groups`
 --
 ALTER TABLE `users_groups`
   ADD CONSTRAINT `fk_users_groups_groups1` FOREIGN KEY (`group_id`) REFERENCES `groups` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION,

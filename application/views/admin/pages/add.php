@@ -9,19 +9,23 @@
 		</div>
 	</div>
 
+	<?php echo form_open('/admin/pages/add'); ?>
+
 	<div class="row">
 		<div class="col-lg-8">
 			<div class="panel panel-default">
 				<div class="panel-heading"> Inserisci le informazioni della pagina </div>
 				<div class="panel-body">
-					<div class="form-group">
+					<div class="form-group <? if(form_error('page_title')) echo 'has-error'; ?>">
 						<label for="page_title">Titolo pagina</label>
-						<input type="text" class="form-control" id="page_title" placeholder="">
+						<input type="text" class="form-control" id="page_title" name="page_title" value="<?php echo set_value('page_title');?>">
+						<span id="helpBlock_page_title" class="help-block"> <?php echo form_error('page_title'); ?> </span>
 					</div>
 
 					<div class="form-group">
 						<label for="page_content">Contenuto</label>
-						<div id="summernote"></div>
+						<span id="helpBlock_page_content" class="help-block"> <?php echo form_error('page_content'); ?> </span>
+						<textarea id="summernote" name="page_content"><?php echo set_value('page_content');?></textarea>
 					</div>
 					
 					
@@ -34,9 +38,9 @@
 				<div class="panel-heading"> Pubblica  </div>
 				<div class="panel-body">
 					<div class="form-group">
-						<label for="page_title">Categoria</label>
-							<select class="form-control">
-								<option value="0">Nessuna</option>
+						<label for="p_category_id">Categoria</label>
+							<select class="form-control" name="p_category_id">
+								<option value="NULL">Nessuna</option>
 								<? foreach($categories as $category): ?>
 									<option value="<?=$category->p_category_id;?>"><?=$category->p_category_name;?></option>
 								<? endforeach;?> 						  
@@ -61,6 +65,8 @@
 		</div> <!-- ./ col-lg-12 -->
 
 	</div> <!-- ./ row -->
+
+	<?php echo form_close(); ?>
 
 </div> <!-- /#page-wrapper -->
 

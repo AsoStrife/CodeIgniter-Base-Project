@@ -22,7 +22,7 @@
 	                                    <i class="fa fa-rss fa-5x"></i>
 	                                </div>
 	                                <div class="col-xs-9 text-right">
-	                                    <div class="huge">26</div>
+	                                    <div class="huge"> <?=$count_news;?> </div>
 	                                    <div> Articoli inseriti!</div>
 	                                </div>
 	                            </div>
@@ -44,7 +44,7 @@
 	                                    <i class="fa fa-file-o fa-5x"></i>
 	                                </div>
 	                                <div class="col-xs-9 text-right">
-	                                    <div class="huge">12</div>
+	                                    <div class="huge"> <?=$count_pages;?> </div>
 	                                    <div> Pagine scritte</div>
 	                                </div>
 	                            </div>
@@ -66,7 +66,7 @@
 	                                    <i class="fa fa-image fa-5x"></i>
 	                                </div>
 	                                <div class="col-xs-9 text-right">
-	                                    <div class="huge"> 22 </div>
+	                                    <div class="huge"> <?=$count_images;?> </div>
 	                                    <div>Immagini caricate!</div>
 	                                </div>
 	                            </div>
@@ -88,7 +88,7 @@
 	                                    <i class="fa fa-user fa-5x"></i>
 	                                </div>
 	                                <div class="col-xs-9 text-right">
-	                                    <div class="huge"> 1</div>
+	                                    <div class="huge"> <?=$count_users;?> </div>
 	                                    <div> Utenti registrati!</div>
 	                                </div>
 	                            </div>

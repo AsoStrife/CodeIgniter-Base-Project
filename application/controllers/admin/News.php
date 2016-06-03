@@ -29,7 +29,18 @@ class News extends CI_Controller {
 	}
 
 	public function add_category(){
-		$this->load->view('admin/news/add_category');
+		$this->load->library('form_validation');
+
+		$this->form_validation->set_rules('n_category_name', 'categoria', 'required|max_length[128]|is_unique[n_categories.n_category_name]');
+
+		if ($this->form_validation->run() == FALSE){
+    		$this->load->view('admin/news/add_category');
+		}
+		else{
+			if( $this->news_model->insertNCategory( $this->input->post('n_category_name') ) );
+				redirect('/admin/news/show_categories', 'refresh');
+		}
+		
 	}
 
 	public function show_categories(){

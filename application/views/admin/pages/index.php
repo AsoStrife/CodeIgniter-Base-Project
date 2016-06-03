@@ -14,15 +14,16 @@
 			<div class="panel panel-default">
 				<div class="panel-heading"> Qui sotto troverete la lista delle pagine inserite </div>
 
-				<div class="panel-body">
-					<?php if(isset($message) && trim($message) != ''): ?>
-						<div class="alert alert-danger" role="alert"> 
-							<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-							<?php echo $message;?> 
-						</div>
-					<? endif;?>
+				<div class="panel-body">		
 
 					<? if($pages): ?>
+
+					<div class="row marginBottom25 pull-right">
+						<div class="col-md-12">
+							<a class="btn btn-primary" href="/admin/pages/add"> Aggiungi una pagina </a>
+						</div>
+					</div>
+					
 					<table class="table table-striped">
 						<tr>
 							<th> ID </th>
@@ -30,24 +31,28 @@
 							<th> Creato in data </th>
 							<th> Ultima modifica </th>
 							<th> Stato </th>
-							<th> Commenti attivi </th>
+							<th> Categoria </th>
 						</tr>
 
 						<?php foreach ($pages as $page):?>
 							<tr>
-					            <td><?php echo $page->id;?></td>
-					            <td><?php echo $page->news_title;?></td>
-					            <td><?php echo $page->news_created_on;?></td>
-					            <td><?php echo $page->news_modified_on;?></td>
-					            <td><?php echo $page->news_status;?></td>
-					            <td><?php echo $page->news_comments_status;?></td>
+					            <td><?php echo $page->page_id;?></td>
+					            <td><?php echo $page->page_title;?></td>
+					            <td><?php echo $page->page_created_on;?></td>
+					            <td><?php echo $page->page_modified_on;?></td>
+					            <td><?php echo $page->page_status;?></td>
+					            <td><?php echo $page->p_category_name;?></td>
 
 							</tr>
 						<?php endforeach;?>
 					</table>
 					<? else: ?>
-						<div class="alert alert-warning" role="alert"> 
-							Non sono ancora state inseriti pagine, <?php echo anchor('admin/pages/add', "aggiungi una pagina ora", array('class'=> 'alert-link'))?> !
+						<div class="row">
+							<div class="col-md-12">
+								<div class="alert alert-warning" role="alert"> 
+									Non sono ancora state inseriti pagine, <?php echo anchor('admin/pages/add', "aggiungi una pagina ora", array('class'=> 'alert-link'))?> !
+								</div>
+							</div>
 						</div>
 					<? endif;?>
 				</div> <!-- ./ panel-body -->

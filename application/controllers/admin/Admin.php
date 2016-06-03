@@ -18,8 +18,15 @@ class Admin extends CI_Controller {
 			return show_404();
     }
 
-	public function index(){
-		$this->load->view('admin/index');
+	public function dashboard(){
+		$this->load->model('dashboard_model');
+
+		$data['count_news'] = $this->dashboard_model->countAllInseredNews();
+		$data['count_pages'] = $this->dashboard_model->countAllInseredPages();
+		$data['count_images'] = $this->dashboard_model->countAllInseredImages();
+		$data['count_users'] = $this->dashboard_model->countAllSignedUsers();
+
+		$this->load->view('admin/dashboard', $data);
 	}
 
 }

@@ -47,19 +47,43 @@
 								else: 
 									echo '<div class="alert alert-warning"> Non è stata inserita alcuna categoria </div>';
 								endif;?> 						  
-					</div>
-					<div class="radio">
-						<label>
-							<input type="radio" name="page_status" id="published" value="published" checked>
-								Pubblica
-						</label>
-					</div>
-					<div class="radio">
-						<label>
-							<input type="radio" name="page_status" id="draft" value="draft">
-								Bozza
-						</label>
-					</div>
+					</div> <!-- ./form-group -->
+
+					<hr>
+
+					<div class="form-group">
+						<label for="page_title">Visibilità</label>
+						<div class="radio">
+							<label>
+								<input type="radio" name="page_status" id="published" value="published" checked>
+									Pubblica
+							</label>
+						</div>
+						<div class="radio">
+							<label>
+								<input type="radio" name="page_status" id="draft" value="draft">
+									Bozza
+							</label>
+						</div>
+					</div> <!-- ./form-group -->
+
+					<hr>
+
+					<div class="form-group">
+						<label for="news_comments_status">Commenti attivi?</label>
+						<div class="radio">
+							<label>
+								<input type="radio" name="news_comments_status" id="true" value="1" checked>
+									Si
+							</label>
+						</div>
+						<div class="radio">
+							<label>
+								<input type="radio" name="news_comments_status" id="false" value="0">
+									No
+							</label>
+						</div>
+					</div> <!-- ./form-group -->
 
 				</div> <!-- ./ panel-body -->
 				<div class="panel-footer"> <button class="btn btn-primary">Salva </button>  </div>

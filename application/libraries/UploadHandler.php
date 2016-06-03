@@ -293,7 +293,7 @@ class UploadHandler
 
         // Added by aso
         if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-            $query = $this->db->get_where('imagesuploaded', array('name' => $file->name));
+            $query = $this->db->get_where('uploaded_images', array('image_name' => $file->name));
 
             foreach ($query->result() as $row)
             {
@@ -1137,14 +1137,14 @@ class UploadHandler
         // Edited by Aso
         if (empty($file->error)) {
             $data = array(
-                    'name'          => $file->name,
-                    'size'          => $file->size,
-                    'type'          => $file->type,
-                    'title'         => $file->title,
-                    'description'   => $file->description,
-                    'url'           => base_url() .'uploads/'.$file->name,
+                    'image_name'          => $file->name,
+                    'image_size'          => $file->size,
+                    'image_type'          => $file->type,
+                    'image_title'         => $file->title,
+                    'image_description'   => $file->description,
+                    'image_url'           => base_url() .'uploads/'.$file->name,
             );
-            $this->CI->db->insert('imagesuploaded', $data);
+            $this->CI->db->insert('uploaded_images', $data);
             $file->id = $this->CI->db->insert_id();
         }
         return $file;
@@ -1434,7 +1434,7 @@ class UploadHandler
         // Added by aso, cancello la foto dal database
         foreach ($response as $name => $deleted) {
             if ($deleted) {
-                $this->CI->db->delete('imagesuploaded', array('name' => $name));
+                $this->CI->db->delete('uploaded_images', array('image_name' => $name));
             }           
         } 
         return $this->generate_response($response, $print_response);

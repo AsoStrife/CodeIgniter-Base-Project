@@ -32,7 +32,7 @@
             <div class="navbar-default sidebar" role="navigation">
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
-                        <li> <a href="/admin/index"><i class="fa fa-dashboard fa-fw"></i> Bacheca </a> </li>
+                        <li> <a href="/admin/dashboard"><i class="fa fa-dashboard fa-fw"></i> Bacheca </a> </li>
 
                         <li> <a href="_"><i class="fa fa-rss fa-fw"></i> Notizie <span class="fa arrow"></span>  </a> 
                             <ul class="nav nav-second-level">
