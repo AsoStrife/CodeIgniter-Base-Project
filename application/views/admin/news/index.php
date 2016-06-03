@@ -15,14 +15,15 @@
 				<div class="panel-heading"> Qui sotto troverete la lista delle notizie inserite </div>
 
 				<div class="panel-body">
-					<?php if(isset($message) && trim($message) != ''): ?>
-						<div class="alert alert-danger" role="alert"> 
-							<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-							<?php echo $message;?> 
-						</div>
-					<? endif;?>
 
 					<? if($news): ?>
+
+					<div class="row marginBottom25 pull-right">
+						<div class="col-md-12">
+							<a class="btn btn-primary" href="/admin/news/add"> Aggiungi un'articolo </a>
+						</div>
+					</div>
+
 					<table class="table table-striped">
 						<tr>
 							<th> ID </th>
