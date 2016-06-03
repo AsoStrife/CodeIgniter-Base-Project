@@ -46,19 +46,23 @@
 								<? endforeach;?> 						  
 							</select>
 					</div>
-					<div class="radio">
-						<label>
-							<input type="radio" name="page_status" id="published" value="published" checked>
-								Pubblica
-						</label>
+					
+					<hr>
+					<div class="form-group">
+						<label for="p_category_id">Visibilità</label>
+						<div class="radio">
+							<label>
+								<input type="radio" name="page_status" id="published" value="published" checked>
+									Pubblica
+							</label>
+						</div>
+						<div class="radio">
+							<label>
+								<input type="radio" name="page_status" id="draft" value="draft">
+									Bozza
+							</label>
+						</div>
 					</div>
-					<div class="radio">
-						<label>
-							<input type="radio" name="page_status" id="draft" value="draft">
-								Bozza
-						</label>
-					</div>
-
 				</div> <!-- ./ panel-body -->
 				<div class="panel-footer"> <button class="btn btn-primary">Salva </button>  </div>
 			</div> <!-- ./ panel panel-default -->
