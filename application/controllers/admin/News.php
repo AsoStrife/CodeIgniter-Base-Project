@@ -24,8 +24,27 @@ class News extends CI_Controller {
 		add_css(array('admin/summernote.css'));
 		add_js(array('admin/summernote.min.js'));
 
-		$data['categories'] = $this->news_model->getAllNewsCategoryMin();
-		$this->load->view('admin/news/add', $data);
+		$this->load->library('form_validation');
+
+		$this->form_validation->set_rules('news_title', 'titolo', 'required|max_length[128]');
+		$this->form_validation->set_rules('news_content', 'contenuto', 'required');
+		$this->form_validation->set_rules('news_categories', 'categoria', '');
+		$this->form_validation->set_rules('news_status', 'visibilità', 'required|in_list[published,draft]');
+		$this->form_validation->set_rules('news_comments_status', 'commenti attivi', 'required');
+
+		if ($this->form_validation->run() == FALSE){
+    		$data['categories'] = $this->news_model->getAllNewsCategoryMin();
+			$this->load->view('admin/news/add', $data);
+		}
+		else{
+			if( $this->news_model->insertNews( $this->input->post('news_title'),
+												$this->input->post('news_content'),
+												$this->input->post('news_status'),
+												$this->input->post('news_comments_status'),
+												$this->input->post('news_categories')
+											 ) );
+				redirect('/admin/news/index', 'refresh');
+		}
 	}
 
 	public function add_category(){

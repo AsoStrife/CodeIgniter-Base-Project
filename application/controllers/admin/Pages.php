@@ -29,7 +29,7 @@ class Pages extends CI_Controller {
 		$this->form_validation->set_rules('page_title', 'titolo', 'required|max_length[128]');
 		$this->form_validation->set_rules('page_content', 'contenuto', 'required');
 		$this->form_validation->set_rules('p_category_id', 'categoria', 'required');
-		$this->form_validation->set_rules('page_status', 'categoria', 'required|in_list[published,draft]');
+		$this->form_validation->set_rules('page_status', 'visibilita', 'required|in_list[published,draft]');
 
 		if ($this->form_validation->run() == FALSE){
     		$data['categories'] = $this->pages_model->getAllPagesCategoryMin();

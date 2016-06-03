@@ -35,7 +35,8 @@ class News_Model extends CI_Model
 	/**
 	 * Insert, update, delete
 	 */
-	public function insertNews($title, $content, $status, $news_comments_status){
+
+	public function insertNews($title, $content, $status, $news_comments_status, $news_categories){
 		$data = array(
 						'news_title' 				=> $title,
 						'news_url_title' 			=> gen_url_name($title),
@@ -45,7 +46,22 @@ class News_Model extends CI_Model
 						'news_created_on' 			=> getDatetime(),
 						'news_modified_on'			=> null
 					);
-		return $this->db->insert('news', $data);
+
+		$this->db->insert('news', $data);
+
+		if( $lastInseredID = $this->db->insert_id() ){
+
+			foreach ($news_categories as $category) {
+				$this->db->insert('news_categories', array(
+														'news_categories_news_id' 		=> $lastInseredID,
+														'news_categories_category_id'	=> $category
+														)
+								);
+			}
+			return $lastInseredID;
+		}
+		else return false;
+
     }
 
     public function updateNews($id, $title, $content, $status, $news_comments_status){

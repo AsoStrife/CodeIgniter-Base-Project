@@ -9,19 +9,24 @@
 		</div>
 	</div>
 
-	<div class="row">
+	<?php echo form_open('/admin/news/add'); ?>
+
+		<div class="row">
 		<div class="col-lg-8">
 			<div class="panel panel-default">
 				<div class="panel-heading"> Inserisci le informazioni dell'articolo </div>
 				<div class="panel-body">
-					<div class="form-group">
-						<label for="page_title">Titolo articolo</label>
-						<input type="text" class="form-control" id="page_title" placeholder="">
+				 <?php echo  validation_errors(); ?>
+					<div class="form-group <? if(form_error('news_title')) echo 'has-error'; ?>">
+						<label for="news_title">Titolo articolo</label>
+						<input type="text" class="form-control" id="news_title" name="news_title" value="<?php echo set_value('news_title');?>">
+						<span id="helpBlock_page_title" class="help-block"> <?php echo form_error('news_title'); ?> </span>
 					</div>
 
 					<div class="form-group">
-						<label for="page_content">Contenuto</label>
-						<div id="summernote"></div>
+						<label for="news_content">Contenuto</label>
+						<span id="helpBlock_news_content" class="help-block"> <?php echo form_error('news_content'); ?> </span>
+						<textarea id="summernote" name="news_content"><?php echo set_value('news_content');?></textarea>
 					</div>
 					
 					
@@ -34,12 +39,12 @@
 				<div class="panel-heading"> Pubblica  </div>
 				<div class="panel-body">
 					<div class="form-group">
-						<label for="page_title">Categorie</label>
+						<label for="news_categories">Categorie</label>
 							<? if($categories): 
 								foreach($categories as $category): ?>
 									<div class="checkbox">
 										<label>
-											<input type="checkbox" value="<?=$category->n_category_id;?>">
+											<input type="checkbox" name="news_categories[]" value="<?=$category->n_category_id;?>">
 											<?=$category->n_category_name;?>
 										</label>
 									</div>	
@@ -55,13 +60,13 @@
 						<label for="page_title">Visibilità</label>
 						<div class="radio">
 							<label>
-								<input type="radio" name="page_status" id="published" value="published" checked>
+								<input type="radio" name="news_status" id="published" value="published" checked>
 									Pubblica
 							</label>
 						</div>
 						<div class="radio">
 							<label>
-								<input type="radio" name="page_status" id="draft" value="draft">
+								<input type="radio" name="news_status" id="draft" value="draft">
 									Bozza
 							</label>
 						</div>

@@ -35,7 +35,7 @@
 
 						<?php foreach ($news as $n):?>
 							<tr>
-					            <td><?php echo $n->id;?></td>
+					            <td><?php echo $n->news_id;?></td>
 					            <td><?php echo $n->news_title;?></td>
 					            <td><?php echo $n->news_created_on;?></td>
 					            <td><?php echo $n->news_modified_on;?></td>
