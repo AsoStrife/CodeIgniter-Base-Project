@@ -10,9 +10,6 @@ class Auth extends CI_Controller {
 		$this->load->helper(array('url','language'));
 
 		$this->form_validation->set_error_delimiters($this->config->item('error_start_delimiter', 'ion_auth'), $this->config->item('error_end_delimiter', 'ion_auth'));
-
-		add_css(array('admin/metisMenu.min.css', 'admin/sb-admin-2.css', 'admin/font-awesome.min.css'));
-		add_js(array('admin/metisMenu.min.js', 'admin/sb-admin-2.js'));
 	}
 
 	// redirect if needed, otherwise display the user list

@@ -49,7 +49,7 @@
 					
 					<hr>
 					<div class="form-group">
-						<label for="p_category_id">Visibilità</label>
+						<label for="page_status">Visibilità</label>
 						<div class="radio">
 							<label>
 								<input type="radio" name="page_status" id="published" value="published" checked>
@@ -66,7 +66,7 @@
 				</div> <!-- ./ panel-body -->
 				<div class="panel-footer"> <button class="btn btn-primary">Salva </button>  </div>
 			</div> <!-- ./ panel panel-default -->
-		</div> <!-- ./ col-lg-12 -->
+		</div> <!-- ./ col-lg-4 -->
 
 	</div> <!-- ./ row -->
 

@@ -6,15 +6,37 @@ class ImageUploader extends CI_Controller {
 	public function __construct() {
         parent::__construct();
 
-		add_css(array('admin/metisMenu.min.css', 'admin/sb-admin-2.css', 'admin/font-awesome.min.css'));
-		add_js(array('admin/metisMenu.min.js', 'admin/sb-admin-2.js'));
-
+		$this->load->model('imageUploader_model');
 		// Admin zone is visible only for administrators.
 		if (!$this->ion_auth->logged_in() || !$this->ion_auth->is_admin())
 			return show_404();
     }
 
-	public function index(){
+    public function add_gallery(){
+    	add_css(array('plugins/justifiedGallery/justifiedGallery.min.css'));
+		add_js(array('plugins/justifiedGallery/jquery.justifiedGallery.min.js', 'admin/imageUploader_addGallery.js'));
+
+    	$this->load->library('form_validation');
+		$this->form_validation->set_rules('gallery_name', 'titolo', 'required|max_length[128]');
+		$this->form_validation->set_rules('gallery_status', 'visibilita', 'required|in_list[published,draft]');
+
+		if ($this->form_validation->run() == FALSE){
+    		$data['images'] = $this->imageUploader_model->getAllImages();
+			$this->load->view('admin/imageUploader/add_gallery', $data);
+		}
+		else{
+			if($this->imageUploader_model->addGallery($this->input->post('gallery_name'), $this->input->post('gallery_status'), $this->input->post('gallery_image_image_id')))
+				redirect('admin/imageUploader/show_galleries', 'refresh');
+		}
+    	
+    }
+
+    public function show_galleries(){
+    	$data['galleries'] = $this->imageUploader_model->getAllGalleries();
+    	$this->load->view('admin/imageUploader/show_galleries', $data);
+    }
+
+	public function upload(){
 		add_css(array('plugins/bootstrapImageGallery/bootstrap-image-gallery.min.css', 'plugins/bootstrapImageGallery/blueimp-gallery.min.css' ));
 		add_css(array('plugins/jqueryFileUpload/jquery.fileupload.css', 'plugins/jqueryFileUpload/jquery.fileupload-ui.css'));
 		add_js(array(	'plugins/jqueryFileUpload/vendor/jquery.ui.widget.js',
@@ -32,7 +54,7 @@ class ImageUploader extends CI_Controller {
 						'plugins/jqueryFileUpload/main.js',
 					));
 
-		$this->load->view('admin/imageUploader/index');
+		$this->load->view('admin/imageUploader/upload');
 	}
 
 	public function imageUploaderHandler() {

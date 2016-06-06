@@ -94,7 +94,21 @@
                             </ul>
                         </li>
 
-                        <li> <a href="/admin/imageUploader/index"><i class="fa fa-image fa-fw"></i> Gestore Immagini</a> </li>
+                        <li> 
+                            <a href=""><i class="fa fa-image fa-fw"></i> Gestore Immagini <span class="fa arrow"></span> </a> 
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="/admin/imageUploader/show_galleries"> Visualizza gallerie </a>
+                                </li>
+
+                                <li>
+                                    <a href="/admin/imageUploader/add_gallery"> Aggiungi una galleria </a>
+                                </li>
+                                <li>
+                                    <a href="/admin/imageUploader/upload"> Carica foto</a>
+                                </li>
+                            </ul>
+                        </li>
 
                         <li>
                             <a href="_"><i class="fa fa-user fa-fw"></i> Gestione Utente <span class="fa arrow"></span> </a>

@@ -352,3 +352,8 @@ table.dataTable thead .sorting:after {
 .panel-yellow a:hover {
     color: #df8a13;
 }
+
+
+.image-checkbox.selected{
+    border: 4px solid #5cb85c; 
+}

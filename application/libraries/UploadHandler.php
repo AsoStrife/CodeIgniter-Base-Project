@@ -55,6 +55,7 @@ class UploadHandler
         // Edited by Aso
         $this->CI =& get_instance();
         $this->CI->load->database('default');
+        $this->CI->load->model('imageUploader_model');
 
         $this->response = array();
         $this->options = array(
@@ -169,8 +170,8 @@ class UploadHandler
                     // Uncomment the following to force the max
                     // dimensions and e.g. create square thumbnails:
                     //'crop' => true,
-                    'max_width' => 80,
-                    'max_height' => 80
+                    'max_width' => 350,
+                    'max_height' => 250
                 )
             ),
             'print_response' => true
@@ -293,15 +294,12 @@ class UploadHandler
 
         // Added by aso
         if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-            $query = $this->db->get_where('uploaded_images', array('image_name' => $file->name));
+            $query = $this->CI->imageUploader_model->getOneImageByName($file->name);
 
-            foreach ($query->result() as $row)
-            {
-                $file->id			= $row->id;
-                $file->type			= $row->type;
-                $file->title		= $row->title;
-                $file->description	= $row->description;
-            }
+            $file->id			= $query->id;
+            $file->type			= $query->type;
+            $file->title		= $query->title;
+            $file->description	= $query->description;
         }
     }
 
@@ -1136,16 +1134,8 @@ class UploadHandler
         // Salvo i file caricati nel database
         // Edited by Aso
         if (empty($file->error)) {
-            $data = array(
-                    'image_name'          => $file->name,
-                    'image_size'          => $file->size,
-                    'image_type'          => $file->type,
-                    'image_title'         => $file->title,
-                    'image_description'   => $file->description,
-                    'image_url'           => base_url() .'uploads/'.$file->name,
-            );
-            $this->CI->db->insert('uploaded_images', $data);
-            $file->id = $this->CI->db->insert_id();
+            $file->id = $this->CI->imageUploader_model->addOneImage($file->name, $file->size, $file->type, $file->title,  $file->description, 
+                base_url() .'uploads/'.$file->name, base_url() .'uploads/thumbnail/'.$file->name);
         }
         return $file;
     }
@@ -1434,7 +1424,8 @@ class UploadHandler
         // Added by aso, cancello la foto dal database
         foreach ($response as $name => $deleted) {
             if ($deleted) {
-                $this->CI->db->delete('uploaded_images', array('image_name' => $name));
+                $this->CI->imageUploader_model->deleteOneImageByName($name);
+                //$this->CI->db->delete('uploaded_images', array('image_name' => $name));
             }           
         } 
         return $this->generate_response($response, $print_response);

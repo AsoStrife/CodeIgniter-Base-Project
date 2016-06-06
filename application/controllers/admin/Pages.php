@@ -5,9 +5,6 @@ class Pages extends CI_Controller {
 
 	public function __construct() {
         parent::__construct();
-		add_css(array('admin/metisMenu.min.css', 'admin/sb-admin-2.css', 'admin/font-awesome.min.css'));
-		add_js(array('admin/metisMenu.min.js', 'admin/sb-admin-2.js'));
-
 		// Admin zone is visible only for administrators.
 		if (!$this->ion_auth->logged_in() || !$this->ion_auth->is_admin())
 			return show_404();

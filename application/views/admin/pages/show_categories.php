@@ -16,9 +16,9 @@
 
 				<div class="panel-body">
 					
-					<div class="row marginBottom25 pull-right">
+					<div class="row marginBottom25">
 						<div class="col-md-12">
-							<a class="btn btn-primary" href="/admin/pages/add_category"> Aggiungi categoria </a>
+							<a class="btn btn-primary pull-right" href="/admin/pages/add_category"> Aggiungi categoria </a>
 						</div>
 					</div>
 

@@ -16,13 +16,14 @@
 
 				<div class="panel-body">
 
-					<div class="row marginBottom25 pull-right">
+					<div class="row marginBottom25">
 						<div class="col-md-12">
-							<a class="btn btn-primary" href="/admin/news/add_category"> Aggiungi categoria </a>
+							<a class="btn btn-primary pull-right" href="/admin/news/add_category"> Aggiungi categoria </a>
 						</div>
 					</div>
 
 					<? if($categories): ?>
+					
 					<table class="table table-striped">
 						<tr>
 							<th> ID </th>

@@ -12,5 +12,6 @@
 			});
 		</script>
 	<? endif;?>
+
 	</body>
 </html>

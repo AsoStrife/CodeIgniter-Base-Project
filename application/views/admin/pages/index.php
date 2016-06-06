@@ -16,14 +16,14 @@
 
 				<div class="panel-body">		
 
-					<? if($pages): ?>
-
-					<div class="row marginBottom25 pull-right">
+					<div class="row marginBottom25">
 						<div class="col-md-12">
-							<a class="btn btn-primary" href="/admin/pages/add"> Aggiungi una pagina </a>
+							<a class="btn btn-primary pull-right" href="/admin/pages/add"> Aggiungi una pagina </a>
 						</div>
 					</div>
 					
+					<? if($pages): ?>
+
 					<table class="table table-striped">
 						<tr>
 							<th> ID </th>
