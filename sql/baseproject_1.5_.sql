@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 03, 2016 at 09:22 AM
+-- Generation Time: Jun 06, 2016 at 05:10 PM
 -- Server version: 10.1.10-MariaDB
 -- PHP Version: 5.6.19
 
@@ -19,6 +19,32 @@ SET time_zone = "+00:00";
 --
 -- Database: `baseproject`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `galleries`
+--
+
+CREATE TABLE `galleries` (
+  `gallery_id` int(11) NOT NULL,
+  `gallery_name` varchar(128) NOT NULL,
+  `gallery_created_on` datetime NOT NULL,
+  `gallery_modified_on` datetime DEFAULT NULL,
+  `gallery_status` enum('published','draft') NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `gallery_image`
+--
+
+CREATE TABLE `gallery_image` (
+  `gallery_image_id` int(11) NOT NULL,
+  `gallery_image_gallery_id` int(11) NOT NULL,
+  `gallery_image_image_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -70,6 +96,14 @@ CREATE TABLE `news` (
   `news_comments_status` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `news`
+--
+
+INSERT INTO `news` (`news_id`, `news_created_on`, `news_modified_on`, `news_title`, `news_url_title`, `news_content`, `news_status`, `news_comments_status`) VALUES
+(1, '2016-06-03 15:07:31', NULL, 'Titolo di prova articolo', 'titolo-di-prova-articolo', '<p>Contenuto dell''articolo</p>', 'published', 1),
+(2, '2016-06-03 15:08:23', NULL, 'Secondo articolo', 'secondo-articolo', '<p>Ciao sono il secondo articolo!</p>', 'draft', 0);
+
 -- --------------------------------------------------------
 
 --
@@ -81,6 +115,15 @@ CREATE TABLE `news_categories` (
   `news_categories_news_id` int(11) NOT NULL,
   `news_categories_category_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `news_categories`
+--
+
+INSERT INTO `news_categories` (`news_categories_id`, `news_categories_news_id`, `news_categories_category_id`) VALUES
+(1, 1, 1),
+(2, 1, 2),
+(3, 2, 2);
 
 -- --------------------------------------------------------
 
@@ -96,6 +139,14 @@ CREATE TABLE `n_categories` (
   `n_category_modified_on` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `n_categories`
+--
+
+INSERT INTO `n_categories` (`n_category_id`, `n_category_name`, `n_category_url_name`, `n_category_created_on`, `n_category_modified_on`) VALUES
+(1, 'Categoria News di prova', 'categoria-news-di-prova', '2016-06-03 11:37:08', NULL),
+(2, 'Seconda categoria di prova', 'seconda-categoria-di-prova', '2016-06-03 11:37:59', NULL);
+
 -- --------------------------------------------------------
 
 --
@@ -109,9 +160,18 @@ CREATE TABLE `pages` (
   `page_title` varchar(128) NOT NULL,
   `page_title_url` varchar(256) NOT NULL,
   `page_content` text NOT NULL,
-  `page_status` enum('published','draft','','') NOT NULL,
+  `page_status` enum('published','draft') NOT NULL,
   `p_category_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `pages`
+--
+
+INSERT INTO `pages` (`page_id`, `page_created_on`, `page_modified_on`, `page_title`, `page_title_url`, `page_content`, `page_status`, `p_category_id`) VALUES
+(2, '2016-06-03 12:34:15', NULL, 'Seconda pagina di prova', 'seconda-pagina-di-prova', '<p>Questa è la <b><u>seconda pagina</u></b>!!</p>', 'published', 2),
+(6, '2016-06-03 12:40:44', NULL, 'Nuova pagina senza categoria', 'nuova-pagina-senza-categoria', '<p>Testo della mia pagina</p>', 'published', 0),
+(7, '2016-06-03 12:41:12', NULL, 'asasa', 'asasa', '<p>asas</p>', 'draft', 0);
 
 -- --------------------------------------------------------
 
@@ -127,6 +187,15 @@ CREATE TABLE `p_categories` (
   `p_category_modified_on` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `p_categories`
+--
+
+INSERT INTO `p_categories` (`p_category_id`, `p_category_name`, `p_category_url_name`, `p_category_created_on`, `p_category_modified_on`) VALUES
+(1, 'Categoria di prova 1', 'Categoria-di-prova-1', '2016-06-03 11:31:37', NULL),
+(2, ' Categoria di prova 2', '-categoria-di-prova-2', '2016-06-03 11:33:03', NULL),
+(3, 'Categoria di prova 3', 'categoria-di-prova-3', '2016-06-03 11:33:14', NULL);
+
 -- --------------------------------------------------------
 
 --
@@ -138,7 +207,8 @@ CREATE TABLE `uploaded_images` (
   `image_name` varchar(255) DEFAULT NULL,
   `image_size` int(11) DEFAULT NULL,
   `image_type` varchar(255) DEFAULT NULL,
-  `image_url` varchar(255) DEFAULT NULL,
+  `image_url` varchar(512) DEFAULT NULL,
+  `image_thumbnail_url` varchar(512) NOT NULL,
   `image_title` varchar(255) DEFAULT NULL,
   `image_description` text
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -175,7 +245,7 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `ip_address`, `username`, `password`, `salt`, `email`, `activation_code`, `forgotten_password_code`, `forgotten_password_time`, `remember_code`, `created_on`, `last_login`, `active`, `first_name`, `last_name`, `company`, `phone`) VALUES
 (1, '127.0.0.1', 'administrator', '$2a$07$SeBknntpZror9uyftVopmu61qg0ms8Qv1yV6FG.kQOSM.9QhmTo36', '', 'admin@admin.com', 'adf59b8b49892356075e4c168dc4fbe6f449778a', NULL, NULL, '6b8kaYJa.kYsnKmaE28nau', 1268889823, 1464271068, 0, 'Admin', 'Inistrator', ' -', ' -'),
-(2, '::1', NULL, '$2y$08$QPEB8fEZGZkVTi057DxLdufdrlYkMOGScO/D5e6OCYYdQwF8uh90K', NULL, 'me@andreacorriga.com', NULL, NULL, NULL, 'pjXUXdoKDxDljfAGTyxExe', 1464270944, 1464937204, 1, 'Andrea', 'Corriga', 'Webenterprises', '345 62 29 455');
+(2, '::1', NULL, '$2y$08$QPEB8fEZGZkVTi057DxLdufdrlYkMOGScO/D5e6OCYYdQwF8uh90K', NULL, 'me@andreacorriga.com', NULL, NULL, NULL, 'odpa86jMYgLEqi50Kog77.', 1464270944, 1465218272, 1, 'Andrea', 'Corriga', 'Webenterprises', '345 62 29 455');
 
 -- --------------------------------------------------------
 
@@ -202,6 +272,18 @@ INSERT INTO `users_groups` (`id`, `user_id`, `group_id`) VALUES
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `galleries`
+--
+ALTER TABLE `galleries`
+  ADD PRIMARY KEY (`gallery_id`);
+
+--
+-- Indexes for table `gallery_image`
+--
+ALTER TABLE `gallery_image`
+  ADD PRIMARY KEY (`gallery_image_id`);
 
 --
 -- Indexes for table `groups`
@@ -271,6 +353,16 @@ ALTER TABLE `users_groups`
 --
 
 --
+-- AUTO_INCREMENT for table `galleries`
+--
+ALTER TABLE `galleries`
+  MODIFY `gallery_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+--
+-- AUTO_INCREMENT for table `gallery_image`
+--
+ALTER TABLE `gallery_image`
+  MODIFY `gallery_image_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+--
 -- AUTO_INCREMENT for table `groups`
 --
 ALTER TABLE `groups`
@@ -284,32 +376,32 @@ ALTER TABLE `login_attempts`
 -- AUTO_INCREMENT for table `news`
 --
 ALTER TABLE `news`
-  MODIFY `news_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `news_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `news_categories`
 --
 ALTER TABLE `news_categories`
-  MODIFY `news_categories_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `news_categories_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `n_categories`
 --
 ALTER TABLE `n_categories`
-  MODIFY `n_category_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `n_category_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `pages`
 --
 ALTER TABLE `pages`
-  MODIFY `page_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `page_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT for table `p_categories`
 --
 ALTER TABLE `p_categories`
-  MODIFY `p_category_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `p_category_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `uploaded_images`
 --
 ALTER TABLE `uploaded_images`
-  MODIFY `image_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `image_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 --
 -- AUTO_INCREMENT for table `users`
 --
