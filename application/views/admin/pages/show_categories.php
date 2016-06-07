@@ -23,7 +23,7 @@
 					</div>
 
 					<? if($categories): ?>
-					<table class="table table-striped">
+					<table class="table table-striped table-bordered table-hover">
 						<tr>
 							<th> ID </th>
 							<th> Titolo </th>
