@@ -15,7 +15,7 @@
 
 					<div class="panel-body">
 
-						<?php echo form_open("auth/create_group");?>
+						<?php echo form_open("admin/auth/create_group");?>
 
 
 							<?php if(isset($message) && trim($message) != ''): ?>

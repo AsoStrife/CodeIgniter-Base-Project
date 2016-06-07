@@ -17,7 +17,7 @@
 							</div>
 						<? endif;?>
 
-                        <?php echo form_open("auth/login");?>
+                        <?php echo form_open("admin/auth/login");?>
                             <fieldset>
                                 <div class="form-group <? if(form_error('identity')) echo 'has-error'?>">
 									<label for="identity" class="control-label"> <?php echo lang('login_identity_label', 'identity');?> </label>

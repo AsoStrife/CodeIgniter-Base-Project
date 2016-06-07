@@ -15,7 +15,7 @@
 
 					<div class="panel-body">
 
-						<?php echo form_open("auth/deactivate/".$user->id);?>
+						<?php echo form_open("admin/auth/deactivate/".$user->id);?>
 
 						<div class="radio">
 						  	<label>	    

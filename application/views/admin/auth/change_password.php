@@ -14,7 +14,7 @@
 					<div class="panel-heading"> <?php echo lang('change_password_heading');?> </div>
 
 					<div class="panel-body">
-						<?php echo form_open("auth/change_password");?>
+						<?php echo form_open("admin/auth/change_password");?>
 
 		                <?php if(isset($message) && trim($message) != ''): ?>
 							<div class="alert alert-danger" role="alert"> 

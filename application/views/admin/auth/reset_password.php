@@ -5,7 +5,7 @@
 	<div class="row">
 		<div class="col-lg-4">
 
-			<?php echo form_open('auth/reset_password/' . $code);?>
+			<?php echo form_open('admin/auth/reset_password/' . $code);?>
 				<div class="form-group">
 					<h1><?php echo lang('reset_password_heading');?></h1>
 				</div>
