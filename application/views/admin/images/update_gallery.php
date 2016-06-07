@@ -19,7 +19,7 @@
 						<label for="gallery_name">Nome Galleria</label>
                         <input type="text" class="form-control" id="gallery_name" name="gallery_name" 
                             value="<?php if(set_value('gallery_name') != null) echo set_value('gallery_name'); else echo $gallery->gallery_name;?>">
-                        <span id="helpBlock_page_title" class="help-block"> <?php echo form_error('gallery_name'); ?> </span>
+                        <span id="helpBlock_gallery_name" class="help-block"> <?php echo form_error('gallery_name'); ?> </span>
                     </div>
 
                     <hr>
@@ -60,7 +60,7 @@
                         </div>
                     </div>
                 </div> <!-- ./ panel-body -->
-                <div class="panel-footer"> <button class="btn btn-primary">Salva </button>  </div>
+                <div class="panel-footer"> <button class="btn btn-primary" type="submit">Salva </button>  </div>
             </div> <!-- ./ panel panel-default -->
         </div> <!-- ./ col-lg-4 -->
 

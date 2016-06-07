@@ -22,7 +22,7 @@ class Dashboard_model extends CI_Model
 	{
 		return $this->db
 				->select('image_id')
-				->from('uploaded_images') 
+				->from('images') 
 				->count_all_results();
 	}
 

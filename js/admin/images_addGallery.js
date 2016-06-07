@@ -14,5 +14,5 @@ $("#adminCheckboxGallery").justifiedGallery();
 			$(this).removeClass('selected');
             
         }
-       
+        e.preventDefault();
     });

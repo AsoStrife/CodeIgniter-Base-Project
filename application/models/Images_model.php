@@ -20,11 +20,11 @@ class Images_model extends CI_Model
 				->result();
 	}
 
-    public function getOneImageById($id){
+    public function getOneImageById($image_id){
     	return $this->db
 				->select('*')
 				->from('images')
-				->where('image_id', $id)		
+				->where('image_id', $image_id)		
 				->get()
 				->row();
     }	
@@ -36,6 +36,18 @@ class Images_model extends CI_Model
 				->where('image_id', $id)		
 				->get()
 				->row();
+    }
+
+    public function updateImage($image_id, $image_title, $image_description){
+        $data = array(  'image_title'           => $image_title,
+                        'image_description'     => $image_description,
+                      );
+
+        $this->db->where('image_id', $image_id);
+        if($this->db->update('images', $data))
+            return true;
+        else
+            return false;
     }
 
     /**
@@ -57,10 +69,21 @@ class Images_model extends CI_Model
            		return false;
     }
 
-    public function deleteOneImageByID($id){
-    	if($this->db->delete('images', array('image_id' => $id)))
+    public function deleteOneImageByID($image_id){
+    	if($this->db->delete('images', array('image_id' => $image_id)))
     		return true;
     	else return false;
+    }
+
+    public function deleteMultipleImages($images_id){
+        foreach($images_id as $image_id){
+            if(!$this->db->delete('images', array('image_id' => $image_id)))
+                return false;
+
+            if(!$this->db->delete('gallery_image', array('gallery_image_image_id' => $image_id)))
+                return false;
+        }
+        return true;
     }
 
     public function deleteOneImageByName($name){
@@ -153,8 +176,21 @@ class Images_model extends CI_Model
         return true; // All query ok!
     }
 
-    public function deleteOneGallery($id){
-    	return $this->db->delete('gallery_image', array('gallery_id' => $id));
+    public function deleteOneGallery($gallery_id){
+    	if( $this->db->delete('galleries', array('gallery_id' => $gallery_id)) && $this->db->delete('gallery_image', array('gallery_image_gallery_id' => $gallery_id)))
+            return true;
+        else return false;
+    }
+
+    public function deleteMultipleGalleries($galleries_id){
+        foreach($galleries_id as $gallery_id){
+            if(!$this->db->delete('galleries', array('gallery_id' => $gallery_id)))
+                return false;
+
+            if(!$this->db->delete('gallery_image', array('gallery_image_gallery_id' => $gallery_id)))
+                return false;
+        }
+        return true;
     }
 
     /**
