@@ -98,15 +98,31 @@
                             <a href=""><i class="fa fa-image fa-fw"></i> Gestore Immagini <span class="fa arrow"></span> </a> 
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="/admin/imageUploader/show_galleries"> Visualizza gallerie </a>
+                                    <a href="#"> Immagini <span class="fa arrow"></span></a>
+                                    <ul class="nav nav-third-level">
+                                        <li>
+                                            <a href="/admin/images/upload"> Carica foto </a>
+                                        </li>
+                                        <li>
+                                            <a href="/admin/images/show_images"> Visualizza Immagini </a>
+                                        </li>
+                                    </ul>
+                                    <!-- /.nav-third-level -->
                                 </li>
-
+                                
                                 <li>
-                                    <a href="/admin/imageUploader/add_gallery"> Aggiungi una galleria </a>
-                                </li>
-                                <li>
-                                    <a href="/admin/imageUploader/upload"> Carica foto</a>
-                                </li>
+                                    <a href="#"> Gallerie fotografiche <span class="fa arrow"></span></a>
+                                    <ul class="nav nav-third-level">
+                                        <li>
+                                            <a href="/admin/images/add_gallery"> Aggiungi galleria </a>
+                                        </li>
+                                        <li>
+                                            <a href="/admin/images/show_galleries"> Visualizza gallerie </a>
+                                        </li>
+                                    </ul>
+                                    <!-- /.nav-third-level -->
+                                </li>    
+                                
                             </ul>
                         </li>
 

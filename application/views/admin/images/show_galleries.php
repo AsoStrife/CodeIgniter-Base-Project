@@ -18,7 +18,7 @@
 					
 					<div class="row marginBottom25">
 						<div class="col-md-12">
-							<a class="btn btn-primary pull-right" href="/admin/imageUploader/add_gallery"> Aggiungi galleria </a>
+							<a class="btn btn-primary pull-right" href="/admin/images/add_gallery"> Aggiungi galleria </a>
 						</div>
 					</div>
 
@@ -30,21 +30,36 @@
 							<th> Creato in data </th>
 							<th> Ultima modifica </th>
 							<th> Visibilità </th>
+							<th> Operazione </th>
 						</tr>
 
 						<?php foreach ($galleries as $gallery):?>
 							<tr>
-					            <td><?php echo $gallery->gallery_id;?></td>
-					            <td><?php echo $gallery->gallery_name;?></td>
-					            <td><?php echo $gallery->gallery_created_on;?></td>
-					            <td><?php echo $gallery->gallery_modified_on;?></td>
-					            <td><?php echo $gallery->gallery_status;?></td>
+								<td><?php echo $gallery->gallery_id;?></td>
+								<td><?php echo $gallery->gallery_name;?></td>
+								<td><?php echo $gallery->gallery_created_on;?></td>
+								<td><?php echo $gallery->gallery_modified_on;?></td>
+								<td>
+									<?php 
+										if($gallery->gallery_status == 'published')
+											echo '<span class="label label-success">' . 'Pubblica' .'</span>';
+										else
+											echo '<span class="label label-warning">' . 'Bozza' .'</span>';
+									?>
+										
+								</td>
+								<td> 
+									<div class="btn-group" role="group">
+										<a class="btn btn-default btn-sm" href="/admin/images/update_gallery?id=<?php echo $gallery->gallery_id;?>"> Modifica </a>
+										<a class="btn btn-default btn-sm" href="/admin/images/delete_gallery?id=<?php echo $gallery->gallery_id;?>"> Elimina </a>
+									</div>
+								</td>
 							</tr>
 						<?php endforeach;?>
 					</table>
 					<? else: ?>
 						<div class="alert alert-warning" role="alert"> 
-							Non sono ancora state inserite gallerie, <?php echo anchor('admin/imageUploader/add_gallery', "aggiungi una galleria ora", array('class'=> 'alert-link'))?> !
+							Non sono ancora state inserite gallerie, <?php echo anchor('admin/images/add_gallery', "aggiungi una galleria ora", array('class'=> 'alert-link'))?> !
 						</div>
 					<? endif;?>
 				</div> <!-- ./ panel-body -->

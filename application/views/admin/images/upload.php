@@ -11,7 +11,7 @@
         <div class="row">
         	<div class="col-md-12">
 			<!-- The file upload form used as target for the file upload widget -->
-			    <form id="fileupload" action="/admin/imageUploader/imageUploaderHandler" method="POST" enctype="multipart/form-data">
+			    <form id="fileupload" action="/admin/images/imageUploaderHandler" method="POST" enctype="multipart/form-data">
 			        <!-- The fileupload-buttonbar contains buttons to add/delete files and start/cancel the upload -->
 			       <div class="row fileupload-buttonbar">
 			            <div class="col-lg-7">

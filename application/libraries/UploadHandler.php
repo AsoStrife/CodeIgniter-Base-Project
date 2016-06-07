@@ -55,11 +55,11 @@ class UploadHandler
         // Edited by Aso
         $this->CI =& get_instance();
         $this->CI->load->database('default');
-        $this->CI->load->model('imageUploader_model');
+        $this->CI->load->model('images_model');
 
         $this->response = array();
         $this->options = array(
-            'script_url' => 'http://localhost/admin/imageUploader/imageUploaderHandler', //$this->get_full_url().'/'.$this->basename($this->get_server_var('SCRIPT_NAME')),
+            'script_url' => 'http://localhost/admin/images/imageUploaderHandler', //$this->get_full_url().'/'.$this->basename($this->get_server_var('SCRIPT_NAME')),
             'upload_dir' => dirname($this->get_server_var('SCRIPT_FILENAME')).'/uploads/',
             'upload_url' => $this->get_full_url().'/uploads/',
             'input_stream' => 'php://input',
@@ -294,7 +294,7 @@ class UploadHandler
 
         // Added by aso
         if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-            $query = $this->CI->imageUploader_model->getOneImageByName($file->name);
+            $query = $this->CI->images_model->getOneImageByName($file->name);
 
             $file->id			= $query->id;
             $file->type			= $query->type;
@@ -1134,7 +1134,7 @@ class UploadHandler
         // Salvo i file caricati nel database
         // Edited by Aso
         if (empty($file->error)) {
-            $file->id = $this->CI->imageUploader_model->addOneImage($file->name, $file->size, $file->type, $file->title,  $file->description, 
+            $file->id = $this->CI->images_model->addOneImage($file->name, $file->size, $file->type, $file->title,  $file->description, 
                 base_url() .'uploads/'.$file->name, base_url() .'uploads/thumbnail/'.$file->name);
         }
         return $file;
@@ -1424,7 +1424,7 @@ class UploadHandler
         // Added by aso, cancello la foto dal database
         foreach ($response as $name => $deleted) {
             if ($deleted) {
-                $this->CI->imageUploader_model->deleteOneImageByName($name);
+                $this->CI->images_model->deleteOneImageByName($name);
                 //$this->CI->db->delete('uploaded_images', array('image_name' => $name));
             }           
         } 

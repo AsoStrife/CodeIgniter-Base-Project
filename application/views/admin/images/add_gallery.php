@@ -8,7 +8,7 @@
             </div> <!-- /.col-md-12 -->
         </div> <!-- /.row -->
 
-        <?php echo form_open('/admin/imageUploader/add_gallery'); ?>
+        <?php echo form_open('/admin/images/add_gallery'); ?>
 
         <div class="row">
 		<div class="col-lg-8">

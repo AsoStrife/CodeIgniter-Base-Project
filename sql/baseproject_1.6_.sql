@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 06, 2016 at 05:10 PM
+-- Generation Time: Jun 07, 2016 at 12:47 PM
 -- Server version: 10.1.10-MariaDB
 -- PHP Version: 5.6.19
 
@@ -34,6 +34,14 @@ CREATE TABLE `galleries` (
   `gallery_status` enum('published','draft') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `galleries`
+--
+
+INSERT INTO `galleries` (`gallery_id`, `gallery_name`, `gallery_created_on`, `gallery_modified_on`, `gallery_status`) VALUES
+(1, 'Galleria Pubblica', '2016-06-07 09:44:20', '2016-06-07 11:00:32', 'published'),
+(2, 'Galleria draft modificata', '2016-06-07 09:44:28', '2016-06-07 11:01:03', 'draft');
+
 -- --------------------------------------------------------
 
 --
@@ -45,6 +53,17 @@ CREATE TABLE `gallery_image` (
   `gallery_image_gallery_id` int(11) NOT NULL,
   `gallery_image_image_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `gallery_image`
+--
+
+INSERT INTO `gallery_image` (`gallery_image_id`, `gallery_image_gallery_id`, `gallery_image_image_id`) VALUES
+(14, 1, 1),
+(15, 1, 3),
+(24, 2, 1),
+(25, 2, 2),
+(26, 2, 3);
 
 -- --------------------------------------------------------
 
@@ -65,6 +84,33 @@ CREATE TABLE `groups` (
 INSERT INTO `groups` (`id`, `name`, `description`) VALUES
 (1, 'admin', ''),
 (2, 'members', 'General User');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `images`
+--
+
+CREATE TABLE `images` (
+  `image_id` int(11) UNSIGNED NOT NULL,
+  `image_name` varchar(255) DEFAULT NULL,
+  `image_size` float DEFAULT NULL,
+  `image_type` varchar(255) DEFAULT NULL,
+  `image_url` varchar(512) DEFAULT NULL,
+  `image_thumbnail_url` varchar(512) NOT NULL,
+  `image_title` varchar(255) DEFAULT NULL,
+  `image_description` text
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `images`
+--
+
+INSERT INTO `images` (`image_id`, `image_name`, `image_size`, `image_type`, `image_url`, `image_thumbnail_url`, `image_title`, `image_description`) VALUES
+(5, 'captain america.png', 1373150, 'image/png', 'http://localhost/uploads/captain america.png', 'http://localhost/uploads/thumbnail/captain america.png', 'Captain America ', 'Captain America Descrizione'),
+(6, 'final-fantasy-xv.jpg', 1630120, 'image/jpeg', 'http://localhost/uploads/final-fantasy-xv.jpg', 'http://localhost/uploads/thumbnail/final-fantasy-xv.jpg', 'Final Fantasy XV', ''),
+(7, 'Final-Fantasy-VII-Remake.jpg', 535580, 'image/jpeg', 'http://localhost/uploads/Final-Fantasy-VII-Remake.jpg', 'http://localhost/uploads/thumbnail/Final-Fantasy-VII-Remake.jpg', 'Final Fantasy VII', 'Final Fantasy VII Descrizione'),
+(8, 'Windows-10-T-Rex.jpg', 2895220, 'image/jpeg', 'http://localhost/uploads/Windows-10-T-Rex.jpg', 'http://localhost/uploads/thumbnail/Windows-10-T-Rex.jpg', 'Windows 10', '');
 
 -- --------------------------------------------------------
 
@@ -199,23 +245,6 @@ INSERT INTO `p_categories` (`p_category_id`, `p_category_name`, `p_category_url_
 -- --------------------------------------------------------
 
 --
--- Table structure for table `uploaded_images`
---
-
-CREATE TABLE `uploaded_images` (
-  `image_id` int(11) UNSIGNED NOT NULL,
-  `image_name` varchar(255) DEFAULT NULL,
-  `image_size` int(11) DEFAULT NULL,
-  `image_type` varchar(255) DEFAULT NULL,
-  `image_url` varchar(512) DEFAULT NULL,
-  `image_thumbnail_url` varchar(512) NOT NULL,
-  `image_title` varchar(255) DEFAULT NULL,
-  `image_description` text
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `users`
 --
 
@@ -245,7 +274,7 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `ip_address`, `username`, `password`, `salt`, `email`, `activation_code`, `forgotten_password_code`, `forgotten_password_time`, `remember_code`, `created_on`, `last_login`, `active`, `first_name`, `last_name`, `company`, `phone`) VALUES
 (1, '127.0.0.1', 'administrator', '$2a$07$SeBknntpZror9uyftVopmu61qg0ms8Qv1yV6FG.kQOSM.9QhmTo36', '', 'admin@admin.com', 'adf59b8b49892356075e4c168dc4fbe6f449778a', NULL, NULL, '6b8kaYJa.kYsnKmaE28nau', 1268889823, 1464271068, 0, 'Admin', 'Inistrator', ' -', ' -'),
-(2, '::1', NULL, '$2y$08$QPEB8fEZGZkVTi057DxLdufdrlYkMOGScO/D5e6OCYYdQwF8uh90K', NULL, 'me@andreacorriga.com', NULL, NULL, NULL, 'odpa86jMYgLEqi50Kog77.', 1464270944, 1465218272, 1, 'Andrea', 'Corriga', 'Webenterprises', '345 62 29 455');
+(2, '::1', NULL, '$2y$08$QPEB8fEZGZkVTi057DxLdufdrlYkMOGScO/D5e6OCYYdQwF8uh90K', NULL, 'me@andreacorriga.com', NULL, NULL, NULL, 'odpa86jMYgLEqi50Kog77.', 1464270944, 1465281758, 1, 'Andrea', 'Corriga', 'Webenterprises', '345 62 29 455');
 
 -- --------------------------------------------------------
 
@@ -292,6 +321,12 @@ ALTER TABLE `groups`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `images`
+--
+ALTER TABLE `images`
+  ADD PRIMARY KEY (`image_id`);
+
+--
 -- Indexes for table `login_attempts`
 --
 ALTER TABLE `login_attempts`
@@ -328,12 +363,6 @@ ALTER TABLE `p_categories`
   ADD PRIMARY KEY (`p_category_id`);
 
 --
--- Indexes for table `uploaded_images`
---
-ALTER TABLE `uploaded_images`
-  ADD PRIMARY KEY (`image_id`);
-
---
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -356,17 +385,22 @@ ALTER TABLE `users_groups`
 -- AUTO_INCREMENT for table `galleries`
 --
 ALTER TABLE `galleries`
-  MODIFY `gallery_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `gallery_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `gallery_image`
 --
 ALTER TABLE `gallery_image`
-  MODIFY `gallery_image_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `gallery_image_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 --
 -- AUTO_INCREMENT for table `groups`
 --
 ALTER TABLE `groups`
   MODIFY `id` mediumint(8) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+--
+-- AUTO_INCREMENT for table `images`
+--
+ALTER TABLE `images`
+  MODIFY `image_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT for table `login_attempts`
 --
@@ -397,11 +431,6 @@ ALTER TABLE `pages`
 --
 ALTER TABLE `p_categories`
   MODIFY `p_category_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
---
--- AUTO_INCREMENT for table `uploaded_images`
---
-ALTER TABLE `uploaded_images`
-  MODIFY `image_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 --
 -- AUTO_INCREMENT for table `users`
 --
