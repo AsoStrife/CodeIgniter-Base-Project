@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 07, 2016 at 04:16 PM
+-- Generation Time: Jun 08, 2016 at 04:01 PM
 -- Server version: 10.1.10-MariaDB
 -- PHP Version: 5.6.19
 
@@ -201,8 +201,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `ip_address`, `username`, `password`, `salt`, `email`, `activation_code`, `forgotten_password_code`, `forgotten_password_time`, `remember_code`, `created_on`, `last_login`, `active`, `first_name`, `last_name`, `company`, `phone`) VALUES
-(1, '127.0.0.1', 'administrator', '$2a$07$SeBknntpZror9uyftVopmu61qg0ms8Qv1yV6FG.kQOSM.9QhmTo36', '', 'admin@admin.com', 'adf59b8b49892356075e4c168dc4fbe6f449778a', NULL, NULL, '6b8kaYJa.kYsnKmaE28nau', 1268889823, 1464271068, 0, 'Admin', 'Inistrator', ' -', ' -'),
-(2, '::1', NULL, '$2y$08$QPEB8fEZGZkVTi057DxLdufdrlYkMOGScO/D5e6OCYYdQwF8uh90K', NULL, 'me@andreacorriga.com', NULL, NULL, NULL, 'IKK1AhUt5ShJ1iSCRoeq1u', 1464270944, 1465296817, 1, 'Andrea', 'Corriga', 'Webenterprises', '345 62 29 455');
+(1, '127.0.0.1', 'administrator', '$2a$07$SeBknntpZror9uyftVopmu61qg0ms8Qv1yV6FG.kQOSM.9QhmTo36', '', 'admin@admin.com', NULL, NULL, NULL, '6b8kaYJa.kYsnKmaE28nau', 1268889823, 1464271068, 1, 'Admin', 'Inistrator', ' -', ' -'),
+(2, '::1', NULL, '$2y$08$QPEB8fEZGZkVTi057DxLdufdrlYkMOGScO/D5e6OCYYdQwF8uh90K', NULL, 'me@andreacorriga.com', NULL, NULL, NULL, 'OVggACZndCRXtyAR7zpYme', 1464270944, 1465390233, 1, 'Andrea', 'Corriga', 'Webenterprises', '345 62 29 455');
 
 -- --------------------------------------------------------
 
@@ -313,12 +313,12 @@ ALTER TABLE `users_groups`
 -- AUTO_INCREMENT for table `galleries`
 --
 ALTER TABLE `galleries`
-  MODIFY `gallery_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `gallery_id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `gallery_image`
 --
 ALTER TABLE `gallery_image`
-  MODIFY `gallery_image_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `gallery_image_id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `groups`
 --
@@ -328,7 +328,7 @@ ALTER TABLE `groups`
 -- AUTO_INCREMENT for table `images`
 --
 ALTER TABLE `images`
-  MODIFY `image_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `image_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 --
 -- AUTO_INCREMENT for table `login_attempts`
 --
@@ -338,17 +338,17 @@ ALTER TABLE `login_attempts`
 -- AUTO_INCREMENT for table `news`
 --
 ALTER TABLE `news`
-  MODIFY `news_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `news_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `news_categories`
 --
 ALTER TABLE `news_categories`
-  MODIFY `news_categories_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `news_categories_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 --
 -- AUTO_INCREMENT for table `n_categories`
 --
 ALTER TABLE `n_categories`
-  MODIFY `n_category_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `n_category_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `pages`
 --
