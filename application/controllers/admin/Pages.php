@@ -40,7 +40,36 @@ class Pages extends CI_Controller {
 											 ) );
 				redirect('/admin/pages/index', 'refresh');
 		}
-		
+	}
+
+	public function update(){
+		if(!$this->input->get('id'))
+			redirect('admin/pages/index', 'refresh');
+
+		add_css(array('admin/summernote.css'));
+		add_js(array('admin/summernote.min.js'));
+
+		$this->load->library('form_validation');
+
+		$this->form_validation->set_rules('page_title', 'titolo', 'required|max_length[128]');
+		$this->form_validation->set_rules('page_content', 'contenuto', 'required');
+		$this->form_validation->set_rules('p_category_id', 'categoria', 'required');
+		$this->form_validation->set_rules('page_status', 'visibilita', 'required|in_list[published,draft]');
+
+		if ($this->form_validation->run() == FALSE){
+			$data['page'] 		= $this->pages_model->getOnePageById( $this->input->get('id'));
+    		$data['categories'] = $this->pages_model->getAllPagesCategoryMin();
+			$this->load->view('admin/pages/update', $data);
+		}
+		else{
+			if( $this->pages_model->updatePage( $this->input->get('id'),
+												$this->input->post('page_title'),
+												$this->input->post('page_content'),
+												$this->input->post('page_status'),
+												$this->input->post('p_category_id')
+											 ) )
+				redirect('/admin/pages/index', 'refresh');
+		}
 	}
 
 	public function show_categories(){

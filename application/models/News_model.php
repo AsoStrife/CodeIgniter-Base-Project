@@ -36,12 +36,12 @@ class News_Model extends CI_Model
 	 * Insert, update, delete
 	 */
 
-	public function insertNews($title, $content, $status, $news_comments_status, $news_categories){
+	public function insertNews($news_title, $news_content, $news_status, $news_comments_status, $news_categories){
 		$data = array(
-						'news_title' 				=> $title,
-						'news_url_title' 			=> gen_url_name($title),
-						'news_content'				=> $content,
-						'news_status'				=> $status,
+						'news_title' 				=> $news_title,
+						'news_url_title' 			=> gen_url_name($news_title),
+						'news_content'				=> $news_content,
+						'news_status'				=> $news_status,
 						'news_comments_status'		=> $news_comments_status,
 						'news_created_on' 			=> getDatetime(),
 						'news_modified_on'			=> null
@@ -64,22 +64,43 @@ class News_Model extends CI_Model
 
     }
 
-    public function updateNews($id, $title, $content, $status, $news_comments_status){
+    public function updateNews($news_id, $news_title, $news_content, $news_status, $news_comments_status, $news_categories){
 		$data = array(
-						'news_title' 				=> $title,
-						'news_url_title' 			=> gen_url_name($title),
-						'news_content'				=> $content,
-						'news_status'				=> $status,
-						'news_comments_status'		=> $news_comments_status,	
+						'news_title' 				=> $news_title,
+						'news_url_title' 			=> gen_url_name($news_title),
+						'news_content'				=> $news_content,
+						'news_status'				=> $news_status,
+						'news_comments_status'		=> $news_comments_status,
 						'news_modified_on'			=> getDatetime()
 					);
 
-		$this->db->where('news_id', $id);
-		return $this->db->update('news', $data);
+		$this->db->where('news_id', $news_id);
+
+		$this->db->update('news', $data);
+
+		if(!$this->db->delete('news_categories', array('news_categories_news_id' => $news_id))) //delete all news_category relation
+    		return false;  
+
+    	if($news_categories){
+	    	foreach ($news_categories as $category) {
+				if(!$this->db->insert('news_categories', array( 'news_categories_news_id' 		=> $news_id, 'news_categories_category_id'	=> $category )))
+					return false;
+			}
+		}
+		return true;
 	}
 
 	public function deleteNews($id)	{
 		return $this->db->delete('news', array('news_id' => $id));
+	}
+
+	public function getOneNewsById($news_id){
+		return $this->db
+				->select('*')
+				->from('news') 
+				->where('news_id', $news_id)
+				->get()
+				->row();
 	}
 
     /**
@@ -97,35 +118,44 @@ class News_Model extends CI_Model
 		return $this->db->insert('n_categories', $data);
 	}
 
-	public function updateNCategory($id, $name){
+	public function updateNCategory($n_category_id, $n_category_name){
 		$data = array(
-						'n_category_name' 			=> $name,
-						'n_category_url_name' 		=> gen_url_name($name),
+						'n_category_name' 			=> $n_category_name,
+						'n_category_url_name' 		=> gen_url_name($n_category_name),
 						'n_category_modified_on' 	=> getDatetime(),
 					);
 
-		$this->db->where('n_category_id', $id);
+		$this->db->where('n_category_id', $n_category_id);
 		return $this->db->update('n_categories', $data);
 	}
 
-	public function deleteNCategory($id)	{
-		return $this->db->delete('n_categories', array('n_category_id' => $id));
+	public function deleteNCategory($n_category_id)	{
+		return $this->db->delete('n_categories', array('n_category_id' => $n_category_id));
 	}
 
 	/**
      * News_Category query
      */
 
-	public function insertNews_Category($news_id, $category_id){
+	public function insertNews_Category($news_categories_news_id, $news_categories_category_id){
 		$data = array(
-						'news_categories_news_id' 			=> $news_id,
-						'news_categories_category_id' 		=> $category_id
+						'news_categories_news_id' 			=> $news_categories_news_id,
+						'news_categories_category_id' 		=> $news_categories_category_id
 					);
 
 		return $this->db->insert('news_categories', $data);
 	}
 
-	public function deleteNews_Category($id)	{
-		return $this->db->delete('news_categories', array('news_categories_id' => $id));
+	public function deleteNews_Category($news_categories_id)	{
+		return $this->db->delete('news_categories', array('news_categories_id' => $news_categories_id));
+	}
+
+	public function getNewsCategoriesByNewsId($news_categories_news_id){
+		return $this->db
+				->select('news_categories_category_id')
+				->from('news_categories') 
+				->where('news_categories_news_id', $news_categories_news_id)
+				->get()
+				->result();
 	}
 }

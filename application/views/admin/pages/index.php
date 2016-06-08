@@ -32,6 +32,7 @@
 							<th> Ultima modifica </th>
 							<th> Stato </th>
 							<th> Categoria </th>
+							<th> Operazioni </th>
 						</tr>
 
 						<?php foreach ($pages as $page):?>
@@ -40,9 +41,16 @@
 					            <td><?php echo $page->page_title;?></td>
 					            <td><?php echo $page->page_created_on;?></td>
 					            <td><?php echo $page->page_modified_on;?></td>
-					            <td><?php echo $page->page_status;?></td>
-					            <td><?php echo $page->p_category_name;?></td>
-
+					            <td> 
+					            	<?php 
+										if($page->page_status == 'published')
+											echo '<span class="label label-success">' . 'Pubblica' .'</span>';
+										else
+											echo '<span class="label label-warning">' . 'Bozza' .'</span>';
+									?>
+								</td>
+					            <td><?php echo $page->p_category_name == null ? 'Nessuna' : $page->p_category_name;?></td>
+					            <td> <a href="/admin/pages/update?id=<?=$page->page_id;?>" class="btn btn-default"> Modifica </a> </td>
 							</tr>
 						<?php endforeach;?>
 					</table>

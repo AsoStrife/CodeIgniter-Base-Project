@@ -44,43 +44,43 @@ class Pages_Model extends CI_Model
 	 * Insert, update, delete
 	 */
 
-    public function insertPage($title, $content, $status, $category_id){
+    public function insertPage($page_title, $page_content, $page_status, $p_category_id){
 		$data = array(
-						'page_title' 				=> $title,
-						'page_title_url' 			=> gen_url_name($title),
-						'page_content'				=> $content,
-						'page_status'				=> $status,
-						'p_category_id'				=> $category_id,
+						'page_title' 				=> $page_title,
+						'page_title_url' 			=> gen_url_name($page_title),
+						'page_content'				=> $page_content,
+						'page_status'				=> $page_status,
+						'p_category_id'				=> $p_category_id,
 						'page_created_on' 			=> getDatetime(),
 						'page_modified_on'			=> null
 					);
 		return $this->db->insert('pages', $data);
     }
 
-    public function updatePage($id, $title, $content, $status, $category_id){
+    public function updatePage($page_id, $page_title, $page_content, $page_status, $p_category_id){
 		$data = array(
-						'page_title' 			=> $title,
-						'page_title_url' 			=> gen_url_name($title),
-						'page_content'				=> $content,
-						'page_status'				=> $status,
-						'page_category_id'			=> $category_id,
-						'page_modified_on' 			=> getDatetime(),
+						'page_title' 			=> $page_title,
+						'page_title_url' 		=> gen_url_name($page_title),
+						'page_content'			=> $page_content,
+						'page_status'			=> $page_status,
+						'p_category_id'			=> $p_category_id,
+						'page_modified_on' 		=> getDatetime(),
 					);
 
-		$this->db->where('page_id', $id);
+		$this->db->where('page_id', $page_id);
 		return $this->db->update('pages', $data);
 	}
 
-	public function deletePage($id)	{
-		return $this->db->delete('pages', array('page_id' => $id));
+	public function deletePage($page_id)	{
+		return $this->db->delete('pages', array('page_id' => $page_id));
 	}
     /**
      * Category query
      */
 
-	public function insertPageCategory($name){
+	public function insertPageCategory($p_category_name){
 		$data = array(
-						'p_category_name' 			=> $name,
+						'p_category_name' 			=> $p_category_name,
 						'p_category_url_name' 		=> gen_url_name($name),
 						'p_category_created_on' 	=> getDatetime(),
 						'p_category_modified_on'	=> null
@@ -89,9 +89,9 @@ class Pages_Model extends CI_Model
 		return $this->db->insert('p_categories', $data);
 	}
 
-	public function updatePageCategory($id, $name){
+	public function updatePageCategory($id, $p_category_name){
 		$data = array(
-						'p_category_name' 			=> $name,
+						'p_category_name' 			=> $p_category_name,
 						'p_category_url_name' 		=> gen_url_name($name),
 						'p_category_modified_on' 	=> getDatetime(),
 					);
@@ -102,5 +102,14 @@ class Pages_Model extends CI_Model
 
 	public function deletePageCategory($id)	{
 		return $this->db->delete('p_categories', array('p_category_id' => $id));
+	}
+
+	public function getOnePageById($page_id){
+		return $this->db
+				->select('*')
+				->from('pages') 
+				->where('page_id', $page_id)
+				->get()
+				->row();
 	}
 }

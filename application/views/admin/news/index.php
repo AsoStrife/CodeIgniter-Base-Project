@@ -32,6 +32,7 @@
 							<th> Ultima modifica </th>
 							<th> Stato </th>
 							<th> Commenti attivi </th>
+							<th> Operazioni </th>
 						</tr>
 
 						<?php foreach ($news as $n):?>
@@ -40,9 +41,18 @@
 					            <td><?php echo $n->news_title;?></td>
 					            <td><?php echo $n->news_created_on;?></td>
 					            <td><?php echo $n->news_modified_on;?></td>
-					            <td><?php echo $n->news_status;?></td>
-					            <td><?php echo $n->news_comments_status;?></td>
-
+					            <td> 
+					            	<?php 
+										if($n->news_status == 'published')
+											echo '<span class="label label-success">' . 'Pubblica' .'</span>';
+										else
+											echo '<span class="label label-warning">' . 'Bozza' .'</span>';
+									?>
+								</td>
+					            <td>
+					            	<?php echo $n->news_comments_status == true ? '<span class="label label-success"> Si </span>' : '<span class="label label-warning"> No </span>';?>
+					            </td>
+					            <td> <a href="/admin/news/update?id=<?=$n->news_id;?>" class="btn btn-default"> Modifica </a> </td>
 							</tr>
 						<?php endforeach;?>
 					</table>

@@ -45,6 +45,39 @@ class News extends CI_Controller {
 		}
 	}
 
+	public function update(){
+		if(!$this->input->get('id'))
+			redirect('admin/pages/index', 'refresh');
+
+		add_css(array('admin/summernote.css'));
+		add_js(array('admin/summernote.min.js'));
+
+		$this->load->library('form_validation');
+
+		$this->form_validation->set_rules('news_title', 'titolo', 'required|max_length[128]');
+		$this->form_validation->set_rules('news_content', 'contenuto', 'required');
+		$this->form_validation->set_rules('news_categories', 'categoria', '');
+		$this->form_validation->set_rules('news_status', 'visibilità', 'required|in_list[published,draft]');
+		$this->form_validation->set_rules('news_comments_status', 'commenti attivi', 'required');
+
+		if ($this->form_validation->run() == FALSE){
+			$data['news'] 				= $this->news_model->getOneNewsById( $this->input->get('id'));
+    		$data['categories'] 		= $this->news_model->getAllNewsCategoryMin();
+    		$data['news_categories']	= $this->news_model->getNewsCategoriesByNewsId( $this->input->get('id'));
+			$this->load->view('admin/news/update', $data);
+		}
+		else{
+			if( $this->news_model->updateNews( $this->input->get('id'),
+												$this->input->post('news_title'),
+												$this->input->post('news_content'),
+												$this->input->post('news_status'),
+												$this->input->post('news_comments_status'),
+												$this->input->post('news_categories')
+											 ) )
+				redirect('/admin/news/index', 'refresh');
+		}
+	}
+
 	public function add_category(){
 		$this->load->library('form_validation');
 

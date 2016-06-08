@@ -60,8 +60,7 @@
 													echo '<span class="label label-success">' . 'Pubblica' .'</span>';
 												else
 													echo '<span class="label label-warning">' . 'Bozza' .'</span>';
-											?>
-												
+											?>												
 										</td>
 										<td> 
 											<div class="btn-group" role="group">

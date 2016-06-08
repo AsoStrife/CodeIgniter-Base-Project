@@ -2,7 +2,7 @@
 
 	<?php echo get_js(); ?>
 
-	<? if($this->uri->segment(3) == 'add'): ?>
+	<? if($this->uri->segment(3) == 'add' || $this->uri->segment(3) == 'update'): ?>
 		<script>
 			$(document).ready(function() {
 			    $('#summernote').summernote({
