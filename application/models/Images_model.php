@@ -29,13 +29,22 @@ class Images_model extends CI_Model
 				->row();
     }	
 
-    public function getOneImageByName($name){
+    public function getOneImageByName($image_name){
     	return $this->db
 				->select('*')
 				->from('images')
-				->where('image_id', $id)		
+				->where('image_name', $image_name)		
 				->get()
 				->row();
+    }
+
+    public function getImageNameById($image_id){
+        return $this->db
+                ->select('image_name')
+                ->from('images')
+                ->where('image_id', $image_id)        
+                ->get()
+                ->row();
     }
 
     public function updateImage($image_id, $image_title, $image_description){

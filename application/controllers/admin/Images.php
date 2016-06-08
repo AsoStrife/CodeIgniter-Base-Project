@@ -27,8 +27,15 @@ class Images extends CI_Controller {
 		}
 		else{
 			if($this->input->post('selected_images')){
-				//print_r($this->input->post('selected_galleries'));
-				$this->images_model->deleteMultipleImages( $this->input->post('selected_images') );
+				
+				foreach($this->input->post('selected_images') as $selected_image){
+
+					if($img	= $this->images_model->getImageNameById($selected_image)){
+						$this->images_model->deleteOneImageByID( $selected_image );	
+						@unlink(FCPATH.'uploads/'.$img->image_name);
+						@unlink(FCPATH.'uploads/thumbnail/'.$img->image_name);
+					}
+				}	
 			}
 			redirect('/admin/images/show_images', 'refresh');
 		}
