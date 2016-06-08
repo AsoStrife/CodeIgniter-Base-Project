@@ -33,8 +33,8 @@
 					<div class="row">
 						<div class="col-md-12">
 							<? if(validation_errors()): ?>
-									<div class="alert alert-danger" role="alert"> Devi selezionare almeno una galleria da cancellare </div>
-								<? endif;?>
+								<div class="alert alert-danger" role="alert"> Devi selezionare almeno una galleria da cancellare </div>
+							<? endif;?>
 
 							<table class="table table-striped table-bordered table-hover">
 								<tr>

@@ -11,18 +11,31 @@ class News extends CI_Controller {
 			return show_404();
 
 		$this->load->model('news_model');
+		$this->load->library('form_validation');
     }
 
 	public function index(){
-		$data['news'] = $this->news_model->getAllNewsForAdminTable();
-		$this->load->view('admin/news/index', $data);
+		$this->form_validation->set_rules('selected_news[]', 'articoli', 'required');
+
+		if ($this->form_validation->run() == FALSE){
+			$data['news'] = $this->news_model->getAllNewsForAdminTable();
+			$this->load->view('admin/news/index', $data);
+		}
+		else{
+			if($this->input->post('selected_news')){
+				
+				foreach($this->input->post('selected_news') as $selected_news){
+						$this->news_model->deleteNews( $selected_news );	
+				}	
+			}
+			redirect('/admin/news/index', 'refresh');
+		}
+		
 	}
 
 	public function add(){
 		add_css(array('admin/summernote.css'));
 		add_js(array('admin/summernote.min.js'));
-
-		$this->load->library('form_validation');
 
 		$this->form_validation->set_rules('news_title', 'titolo', 'required|max_length[128]');
 		$this->form_validation->set_rules('news_content', 'contenuto', 'required');
@@ -52,8 +65,6 @@ class News extends CI_Controller {
 		add_css(array('admin/summernote.css'));
 		add_js(array('admin/summernote.min.js'));
 
-		$this->load->library('form_validation');
-
 		$this->form_validation->set_rules('news_title', 'titolo', 'required|max_length[128]');
 		$this->form_validation->set_rules('news_content', 'contenuto', 'required');
 		$this->form_validation->set_rules('news_categories', 'categoria', '');
@@ -78,9 +89,10 @@ class News extends CI_Controller {
 		}
 	}
 
+	/**
+	 * Category
+	 */
 	public function add_category(){
-		$this->load->library('form_validation');
-
 		$this->form_validation->set_rules('n_category_name', 'categoria', 'required|max_length[128]|is_unique[n_categories.n_category_name]');
 
 		if ($this->form_validation->run() == FALSE){
@@ -94,8 +106,43 @@ class News extends CI_Controller {
 	}
 
 	public function show_categories(){
-		$data['categories'] = $this->news_model->getAllNewsCategory();
+		$this->form_validation->set_rules('selected_categories[]', 'categoria', 'required');
+
+		if ($this->form_validation->run() == FALSE){
+			$data['categories'] = $this->news_model->getAllNewsCategory();
 		$this->load->view('admin/news/show_categories', $data);
+		}
+		else{
+			if($this->input->post('selected_categories')){
+				
+				foreach($this->input->post('selected_categories') as $selected_category){
+						$this->news_model->deleteNCategory( $selected_category );	
+				}	
+			}
+			redirect('/admin/news/show_categories', 'refresh');
+		}
+		
 	}
 
+	public function update_category(){
+		if(!$this->input->get('id'))
+			redirect('admin/news/show_categories', 'refresh');
+
+		add_css(array('admin/summernote.css'));
+		add_js(array('admin/summernote.min.js'));
+
+		$this->form_validation->set_rules('n_category_name', 'categoria', 'required|max_length[128]|is_unique[n_categories.n_category_name]');
+
+
+		if ($this->form_validation->run() == FALSE){
+    		$data['category'] 	= $this->news_model->getOneNCategory( $this->input->get('id'));
+			$this->load->view('admin/news/update_category', $data);
+		}
+		else{
+			if( $this->news_model->updateNCategory( $this->input->get('id'),
+													$this->input->post('n_category_name')
+											 ) )
+				redirect('/admin/news/show_categories', 'refresh');
+		}
+	}
 }

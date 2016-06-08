@@ -10,6 +10,7 @@ class Pages extends CI_Controller {
 			return show_404();
 
 		$this->load->model('pages_model');
+		$this->load->library('form_validation');
     }
 
 	public function index(){
@@ -20,8 +21,6 @@ class Pages extends CI_Controller {
 	public function add(){
 		add_css(array('admin/summernote.css'));
 		add_js(array('admin/summernote.min.js'));
-
-		$this->load->library('form_validation');
 
 		$this->form_validation->set_rules('page_title', 'titolo', 'required|max_length[128]');
 		$this->form_validation->set_rules('page_content', 'contenuto', 'required');
@@ -49,8 +48,6 @@ class Pages extends CI_Controller {
 		add_css(array('admin/summernote.css'));
 		add_js(array('admin/summernote.min.js'));
 
-		$this->load->library('form_validation');
-
 		$this->form_validation->set_rules('page_title', 'titolo', 'required|max_length[128]');
 		$this->form_validation->set_rules('page_content', 'contenuto', 'required');
 		$this->form_validation->set_rules('p_category_id', 'categoria', 'required');
@@ -73,13 +70,24 @@ class Pages extends CI_Controller {
 	}
 
 	public function show_categories(){
-		$data['categories'] = $this->pages_model->getAllPagesCategory();
-		$this->load->view('admin/pages/show_categories', $data);
+		$this->form_validation->set_rules('selected_categories[]', 'categorie', 'required');
+
+		if ($this->form_validation->run() == FALSE){
+			$data['categories'] = $this->pages_model->getAllPagesCategory();
+			$this->load->view('admin/pages/show_categories', $data);
+		}
+		else{
+			if($this->input->post('selected_categories')){
+				
+				foreach($this->input->post('selected_categories') as $selected_category){
+						$this->pages_model->deletePageCategory( $selected_category );	
+				}	
+			}
+			redirect('/admin/news/show_categories', 'refresh');
+		}
 	}
 
 	public function add_category(){
-		$this->load->library('form_validation');
-
 		$this->form_validation->set_rules('p_category_name', 'categoria', 'required|max_length[128]|is_unique[p_categories.p_category_name]');
 
 		if ($this->form_validation->run() == FALSE){
@@ -90,6 +98,28 @@ class Pages extends CI_Controller {
 				redirect('/admin/pages/show_categories', 'refresh');
 		}
 		
+	}
+
+	public function update_category(){
+		if(!$this->input->get('id'))
+			redirect('admin/pages/show_categories', 'refresh');
+
+		add_css(array('admin/summernote.css'));
+		add_js(array('admin/summernote.min.js'));
+
+		$this->form_validation->set_rules('p_category_name', 'categoria', 'required|max_length[128]|is_unique[n_categories.n_category_name]');
+
+
+		if ($this->form_validation->run() == FALSE){
+    		$data['category'] 	= $this->pages_model->getOnePCategory( $this->input->get('id') );
+			$this->load->view('admin/pages/update_category', $data);
+		}
+		else{
+			if( $this->pages_model->updatePageCategory( $this->input->get('id'),
+													$this->input->post('p_category_name')
+											 ) )
+				redirect('/admin/pages/show_categories', 'refresh');
+		}
 	}
 
 	

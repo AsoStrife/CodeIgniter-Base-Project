@@ -90,8 +90,8 @@ class News_Model extends CI_Model
 		return true;
 	}
 
-	public function deleteNews($id)	{
-		return $this->db->delete('news', array('news_id' => $id));
+	public function deleteNews($news_id)	{
+		return $this->db->delete('news', array('news_id' => $news_id));
 	}
 
 	public function getOneNewsById($news_id){
@@ -106,6 +106,14 @@ class News_Model extends CI_Model
     /**
      * Category query
      */
+    public function getOneNCategory($n_categories){
+    	return $this->db
+				->select('*')
+				->from('n_categories') 
+				->where('n_category_id', $n_categories)
+				->get()
+				->row();
+    }
 
 	public function insertNCategory($name){
 		$data = array(
@@ -147,7 +155,10 @@ class News_Model extends CI_Model
 	}
 
 	public function deleteNews_Category($news_categories_id)	{
-		return $this->db->delete('news_categories', array('news_categories_id' => $news_categories_id));
+		if($this->db->delete('news_categories', array('news_categories_id' => $news_categories_id))
+			&& $this->db->delete('news_categories', array('news_categories_category_id' => $news_categories_id)))
+			return true;
+		else false;
 	}
 
 	public function getNewsCategoriesByNewsId($news_categories_news_id){
