@@ -25,7 +25,7 @@
                     <h4> Seleziona le foto da inserire nella galleria </h4>
                     <div id="adminCheckboxGallery">
 						<? foreach($images as $image): ?>
-							<a href="#" class="thumbnail">
+							<a href="#">
 								<img src="<?=$image->image_thumbnail_url;?>" data-id="<?=$image->image_id;?>" class="image-checkbox">
 								<input type="checkbox" id="<?=$image->image_id;?>" value="<?=$image->image_id;?>"  name="gallery_image_image_id[]" class="hidden">
 							</a>	
